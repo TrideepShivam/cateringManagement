@@ -56,6 +56,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         contentContainer.setBackground(new java.awt.Color(240, 255, 255));
 
+        btnclose.setBackground(new java.awt.Color(204, 255, 255));
         btnclose.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnclose.setText("X");
         btnclose.setBorder(null);
@@ -63,6 +64,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         btnclose.setContentAreaFilled(false);
         btnclose.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnclose.setDefaultCapable(false);
+        btnclose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btncloseMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btncloseMouseExited(evt);
+            }
+        });
         btnclose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncloseActionPerformed(evt);
@@ -172,6 +181,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         navStaffs.setBackground(new java.awt.Color(0, 200, 255));
         navStaffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        navStaffs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                navStaffsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                navStaffsMouseExited(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -204,6 +221,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         navAssets.setBackground(new java.awt.Color(0, 200, 255));
         navAssets.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        navAssets.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                navAssetsMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                navAssetsMouseExited(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,6 +261,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         navLogout.setBackground(new java.awt.Color(0, 200, 255));
         navLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        navLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                navLogoutMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                navLogoutMouseExited(evt);
+            }
+        });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -375,6 +408,38 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private void navServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseEntered
         this.navServices.setBackground(new Color(50,50,50));
     }//GEN-LAST:event_navServicesMouseEntered
+
+    private void navStaffsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseEntered
+        this.navStaffs.setBackground(new Color(50,50,50));
+    }//GEN-LAST:event_navStaffsMouseEntered
+
+    private void navStaffsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseExited
+        this.navStaffs.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_navStaffsMouseExited
+
+    private void navAssetsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseEntered
+        this.navAssets.setBackground(new Color(50,50,50));
+    }//GEN-LAST:event_navAssetsMouseEntered
+
+    private void navAssetsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseExited
+        this.navAssets.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_navAssetsMouseExited
+
+    private void navLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseEntered
+        this.navLogout.setBackground(new Color(50,50,50));
+    }//GEN-LAST:event_navLogoutMouseEntered
+
+    private void navLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseExited
+        this.navLogout.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_navLogoutMouseExited
+
+    private void btncloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncloseMouseEntered
+        btnclose.setForeground(Color.red);
+    }//GEN-LAST:event_btncloseMouseEntered
+
+    private void btncloseMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncloseMouseExited
+        btnclose.setForeground(Color.black);
+    }//GEN-LAST:event_btncloseMouseExited
 
     /**
      * @param args the command line arguments
