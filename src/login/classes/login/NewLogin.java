@@ -42,6 +42,8 @@ public class NewLogin extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         detailContiner = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         contentContainer = new javax.swing.JPanel();
         loginContainer = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -81,19 +83,39 @@ public class NewLogin extends javax.swing.JFrame {
         otherGender = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
-        detailContiner.setBackground(new java.awt.Color(204, 255, 255));
+        detailContiner.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login/main.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 204, 255));
+        jLabel9.setText("Catering Management System");
 
         javax.swing.GroupLayout detailContinerLayout = new javax.swing.GroupLayout(detailContiner);
         detailContiner.setLayout(detailContinerLayout);
         detailContinerLayout.setHorizontalGroup(
             detailContinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGroup(detailContinerLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(detailContinerLayout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         detailContinerLayout.setVerticalGroup(
             detailContinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 760, Short.MAX_VALUE)
+            .addGroup(detailContinerLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         getContentPane().add(detailContiner);
@@ -605,7 +627,7 @@ public class NewLogin extends javax.swing.JFrame {
 
         getContentPane().add(contentContainer);
 
-        setSize(new java.awt.Dimension(1404, 767));
+        setSize(new java.awt.Dimension(1390, 760));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -827,11 +849,13 @@ public class NewLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField lastName;
     private javax.swing.JPanel loginBtn;
     private javax.swing.JPanel loginContainer;
