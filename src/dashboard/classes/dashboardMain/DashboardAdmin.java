@@ -4,7 +4,6 @@
  */
 package dashboardMain;
 
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JPanel;
@@ -104,6 +103,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setName("dashboard"); // NOI18N
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1390, 760));
 
         contentContainer.setBackground(new java.awt.Color(0, 204, 255));
         contentContainer.setLayout(new java.awt.CardLayout());
