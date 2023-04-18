@@ -7,6 +7,7 @@ package dashboardMain;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Container;
+import javax.swing.JPanel;
 
 /**
  *
@@ -19,12 +20,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
      */
     CardLayout cardlayout;
     Color onEnter,onExit,onClick;
+    JPanel currentClickedButton;
     public DashboardAdmin() {
         initComponents();
         cardlayout = (CardLayout) (contentContainer.getLayout());
-        onEnter = new Color(50,50,50);
+        currentClickedButton=navDashboard;
+        onEnter = new Color(0,190,250);
         onExit = new Color(0,200,255);
-        onClick = new Color(240,255,255);
+        onClick = new Color(50,50,50);
+        navDashboard.setBackground(onClick);
     }
 
     /**
@@ -689,7 +693,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setText("EVENT");
 
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/id-card.png"))); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/event.png"))); // NOI18N
 
         javax.swing.GroupLayout navEventLayout = new javax.swing.GroupLayout(navEvent);
         navEvent.setLayout(navEventLayout);
@@ -732,7 +736,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setText("ABOUT");
 
-        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/id-card.png"))); // NOI18N
+        jLabel36.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/information.png"))); // NOI18N
 
         javax.swing.GroupLayout navAboutLayout = new javax.swing.GroupLayout(navAbout);
         navAbout.setLayout(navAboutLayout);
@@ -740,8 +744,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
             navAboutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(navAboutLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel36)
-                .addGap(37, 37, 37)
+                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel35)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -775,7 +779,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("CUSTOMER");
 
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/id-card.png"))); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/communication.png"))); // NOI18N
 
         javax.swing.GroupLayout navCustomerLayout = new javax.swing.GroupLayout(navCustomer);
         navCustomer.setLayout(navCustomerLayout);
@@ -831,7 +835,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(navCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(navAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
                 .addComponent(navLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -873,7 +877,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(menuContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menuContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         topNav.setBackground(new java.awt.Color(0, 205, 255));
@@ -948,7 +953,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         getAccessibleContext().setAccessibleName("dashboard");
 
-        setSize(new java.awt.Dimension(1394, 751));
+        setSize(new java.awt.Dimension(1394, 761));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -965,102 +970,110 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btncloseMouseExited
 
     private void navEventMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseExited
-       navEvent.setBackground(new Color(0,200,255));
+       setHoverEffect(navEvent,false);
     }//GEN-LAST:event_navEventMouseExited
 
     private void navEventMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseEntered
-        navEvent.setBackground(new Color(50,50,50));
+        setHoverEffect(navEvent,true);
     }//GEN-LAST:event_navEventMouseEntered
 
     private void navLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseExited
-        this.navLogout.setBackground(new Color(0,200,255));
+        setHoverEffect(navLogout,false);
     }//GEN-LAST:event_navLogoutMouseExited
 
     private void navLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseEntered
-        this.navLogout.setBackground(new Color(250,50,50));
+        setHoverEffect(navLogout,true);
     }//GEN-LAST:event_navLogoutMouseEntered
 
     private void navAssetsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseExited
-        this.navAssets.setBackground(new Color(0,200,255));
+        setHoverEffect(navAssets,false);
     }//GEN-LAST:event_navAssetsMouseExited
 
     private void navAssetsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseEntered
-        this.navAssets.setBackground(new Color(50,50,50));
+        setHoverEffect(navAssets,true);
     }//GEN-LAST:event_navAssetsMouseEntered
 
     private void navStaffsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseExited
-        this.navStaffs.setBackground(new Color(0,200,255));
+        setHoverEffect(navStaffs,false);
     }//GEN-LAST:event_navStaffsMouseExited
 
     private void navStaffsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseEntered
-        this.navStaffs.setBackground(new Color(50,50,50));
+        setHoverEffect(navStaffs,true);
     }//GEN-LAST:event_navStaffsMouseEntered
 
     private void navServicesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseExited
-        this.navServices.setBackground(new Color(0,200,255));
+        setHoverEffect(navServices,false);
     }//GEN-LAST:event_navServicesMouseExited
 
     private void navServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseEntered
-        this.navServices.setBackground(new Color(50,50,50));
+        setHoverEffect(navServices,true);
     }//GEN-LAST:event_navServicesMouseEntered
 
     private void navDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseExited
-        this.navDashboard.setBackground(new Color(0,200,255));
+        setHoverEffect(navDashboard,false);
     }//GEN-LAST:event_navDashboardMouseExited
 
     private void navDashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseEntered
-        this.navDashboard.setBackground(new Color(50,50,50));
+        setHoverEffect(navDashboard,true);
     }//GEN-LAST:event_navDashboardMouseEntered
 
     private void navAboutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseExited
-       navAbout.setBackground(new Color(0,200,255));
+       setHoverEffect(navAbout,false);
     }//GEN-LAST:event_navAboutMouseExited
 
     private void navAboutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseEntered
-        navAbout.setBackground(new Color(50,50,50));
+        setHoverEffect(navAbout,true);
     }//GEN-LAST:event_navAboutMouseEntered
 
     private void navCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseExited
-        navCustomer.setBackground(new Color(0,200,255));
+        setHoverEffect(navCustomer,false);
     }//GEN-LAST:event_navCustomerMouseExited
 
     private void navCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseEntered
-        navCustomer.setBackground(new Color(50,50,50));
+        setHoverEffect(navCustomer,true);
     }//GEN-LAST:event_navCustomerMouseEntered
 
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
-       panelChange(dashboardContainer);
+       panelChange(dashboardContainer,navDashboard);
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseClicked
-        panelChange(serviceContainer);
+        panelChange(serviceContainer,navServices);
     }//GEN-LAST:event_navServicesMouseClicked
 
     private void navEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseClicked
-        panelChange(eventContainer);
+        panelChange(eventContainer,navEvent);
     }//GEN-LAST:event_navEventMouseClicked
 
     private void navStaffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseClicked
-        panelChange(staffContainer);
+        panelChange(staffContainer,navStaffs);
     }//GEN-LAST:event_navStaffsMouseClicked
 
     private void navAssetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseClicked
-        panelChange(assetContainer);
+        panelChange(assetContainer,navAssets);
     }//GEN-LAST:event_navAssetsMouseClicked
 
     private void navCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseClicked
-        panelChange(customerContainer);
+        panelChange(customerContainer,navCustomer);
     }//GEN-LAST:event_navCustomerMouseClicked
 
     private void navAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseClicked
-        panelChange(aboutContainer);
+        panelChange(aboutContainer,navAbout);
     }//GEN-LAST:event_navAboutMouseClicked
-    public void panelChange(Container c){
+    public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
-       contentContainer.add(c);
+       contentContainer.add(content);
        contentContainer.repaint();
        contentContainer.revalidate();
-       
+       btn.setBackground(onClick);
+       currentClickedButton.setBackground(onExit);
+       currentClickedButton=btn;
+    }
+    public void setHoverEffect(Container c,boolean status){
+        Color color = status?onEnter:onExit;//used to select color if status true then black otherwise blue
+        if(!c.getBackground().equals(onClick)){
+            c.setBackground(color);
+        }
     }
     /**
      * @param args the command line arguments
@@ -1111,19 +1124,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
@@ -1162,12 +1167,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navDashboard;
     private javax.swing.JPanel navEvent;
     private javax.swing.JPanel navLogout;
-    private javax.swing.JPanel navLogout1;
-    private javax.swing.JPanel navLogout2;
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
-    private javax.swing.JPanel navStaffs2;
-    private javax.swing.JPanel navStaffs4;
     private javax.swing.JPanel serviceContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JPanel topNav;
