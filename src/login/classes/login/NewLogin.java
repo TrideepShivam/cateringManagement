@@ -647,6 +647,7 @@ public class NewLogin extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(contentContainer, "username:"+usernameTxt.getText()+" password:"+passwordTxt.getText());
         DashboardAdmin dashboard = new DashboardAdmin();
         dashboard.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_loginBtnMouseClicked
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
