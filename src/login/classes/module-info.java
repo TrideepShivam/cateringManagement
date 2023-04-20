@@ -7,4 +7,6 @@ module login {
     requires java.desktop;
     requires java.logging;
     requires dashboard;
+    requires mysql.connector.j;
+    requires java.sql;
 }

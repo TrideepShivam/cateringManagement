@@ -9,6 +9,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import dashboardMain.DashboardAdmin;
+import java.sql.*;
 
 /**
  *
@@ -49,7 +50,6 @@ public class NewLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         usernameTxt = new javax.swing.JTextField();
         passwordTxt = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
         loginBtn = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JPanel();
@@ -58,6 +58,7 @@ public class NewLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        showPwd = new javax.swing.JLabel();
         registerContainer = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -138,6 +139,9 @@ public class NewLogin extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 usernameTxtFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usernameTxtFocusLost(evt);
+            }
         });
         usernameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,20 +158,21 @@ public class NewLogin extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 passwordTxtFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                passwordTxtFocusLost(evt);
+            }
         });
         passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTxtActionPerformed(evt);
             }
         });
-
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Show password");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+        passwordTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passwordTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                passwordTxtKeyReleased(evt);
             }
         });
 
@@ -248,14 +253,23 @@ public class NewLogin extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Username");
 
+        showPwd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        showPwd.setForeground(new java.awt.Color(255, 255, 255));
+        showPwd.setText("Hover to Show");
+        showPwd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        showPwd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                showPwdMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                showPwdMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout loginContainerLayout = new javax.swing.GroupLayout(loginContainer);
         loginContainer.setLayout(loginContainerLayout);
         loginContainerLayout.setHorizontalGroup(
             loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginContainerLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(327, 327, 327))
             .addGroup(loginContainerLayout.createSequentialGroup()
                 .addGroup(loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginContainerLayout.createSequentialGroup()
@@ -276,13 +290,17 @@ public class NewLogin extends javax.swing.JFrame {
                                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(194, 194, 194))
                         .addGroup(loginContainerLayout.createSequentialGroup()
-                            .addGroup(loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jCheckBox1)
-                                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel4))
-                            .addGap(41, 41, 41)))))
+                            .addGroup(loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(showPwd)
+                                .addGroup(loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)))
+                            .addContainerGap()))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loginContainerLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(327, 327, 327))
         );
         loginContainerLayout.setVerticalGroup(
             loginContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,8 +318,8 @@ public class NewLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(showPwd)
+                .addGap(20, 20, 20)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -639,15 +657,52 @@ public class NewLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
-
+    /*to update query
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/catering_management","root","");
+            String query = "insert into Admin values('DEEPANSHU CHAUHAN','deepshshuchauhan@gmail.com','9876543210','deepanshu@123',0);";
+            Statement stmt = con.createStatement();
+            int msg = stmt.executeUpdate(query);
+    */
+    
+    
+    
+    
+    
+    
+    
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
-        JOptionPane.showMessageDialog(contentContainer, "username:"+usernameTxt.getText()+" password:"+passwordTxt.getText());
-        DashboardAdmin dashboard = new DashboardAdmin();
-        dashboard.setVisible(true);
-        this.dispose();
+        String username = usernameTxt.getText();
+        String pwd = passwordTxt.getText();
+        if(username.equals("")||username.equals("Type Here")){
+            JOptionPane.showMessageDialog(contentContainer, "Please Enter username.");
+        }else if(pwd.equals("")||pwd.equals("Type Here")){
+            JOptionPane.showMessageDialog(contentContainer, "Please Enter password.");
+        }else{
+            try{
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/catering_management","root","");
+                String query = "select pwd from Admin where email = '"+username+"';";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if(rs.next()){
+                    if(rs.getString("pwd").equals(pwd)){
+                           DashboardAdmin dashboard = new DashboardAdmin();
+                           dashboard.setVisible(true);
+                           this.dispose();
+                    }else{
+                        JOptionPane.showMessageDialog(contentContainer, "Please enter a valid password.");
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(contentContainer, "You Don't have an account.");
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+        }
+
     }//GEN-LAST:event_loginBtnMouseClicked
 
     private void loginBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseEntered
@@ -779,6 +834,41 @@ public class NewLogin extends javax.swing.JFrame {
     private void registerBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registerBtnMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_registerBtnMouseClicked
+
+    private void usernameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usernameTxtFocusLost
+        if(usernameTxt.getText().equalsIgnoreCase("")){
+            usernameTxt.setText("Type Here");
+        }
+    }//GEN-LAST:event_usernameTxtFocusLost
+
+    private void passwordTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusLost
+        if(passwordTxt.getText().equalsIgnoreCase("")){
+            passwordTxt.setText("Type Here");
+        }
+    }//GEN-LAST:event_passwordTxtFocusLost
+
+    private void showPwdMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPwdMouseEntered
+        showPwd.setForeground(new Color(200,255,255));
+        StringBuffer p = new StringBuffer(passwordTxt.getText());
+        passwordTxt.setText(pwd.toString());
+        pwd = p;
+    }//GEN-LAST:event_showPwdMouseEntered
+
+    private void showPwdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_showPwdMouseExited
+        showPwd.setForeground(Color.white);
+        StringBuffer p = new StringBuffer(passwordTxt.getText());
+        passwordTxt.setText(pwd.toString());
+        pwd = p;
+    }//GEN-LAST:event_showPwdMouseExited
+
+    private void passwordTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTxtKeyPressed
+       char c = evt.getKeyChar();
+       evt.consume();
+    }//GEN-LAST:event_passwordTxtKeyPressed
+
+    private void passwordTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passwordTxtKeyReleased
+        
+    }//GEN-LAST:event_passwordTxtKeyReleased
     public void emptyTextBox(JTextField f){
         if(f.getText().equalsIgnoreCase("Type Here")){
             f.setText("");
@@ -838,7 +928,6 @@ public class NewLogin extends javax.swing.JFrame {
     private javax.swing.JTextField firstName;
     private javax.swing.JButton goToLogin;
     private javax.swing.JButton goToRegister;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -866,6 +955,7 @@ public class NewLogin extends javax.swing.JFrame {
     private javax.swing.JTextField passwordTxt;
     private javax.swing.JPanel registerBtn;
     private javax.swing.JPanel registerContainer;
+    private javax.swing.JLabel showPwd;
     private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
 }
