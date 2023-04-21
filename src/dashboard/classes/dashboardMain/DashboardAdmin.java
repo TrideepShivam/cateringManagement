@@ -6,7 +6,13 @@ package dashboardMain;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +35,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         navDashboard.setBackground(onClick);
         userId = Id;
         lblUsername.setText("Hi, "+Id);
+        getStaffList();
     }
 
     /**
@@ -63,6 +70,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         staffContainer = new javax.swing.JPanel();
         lblStaff = new javax.swing.JLabel();
         stafListContainer = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        staffListTable = new javax.swing.JTable();
         jPanel13 = new javax.swing.JPanel();
         lblTotalStaffs = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
@@ -71,6 +80,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel49 = new javax.swing.JLabel();
         blockBtn = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
+        blockBtn1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        blockBtn2 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         assetContainer = new javax.swing.JPanel();
         lblAsset = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
@@ -368,15 +381,57 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         stafListContainer.setBackground(new java.awt.Color(210, 255, 255));
 
+        staffListTable.setAutoCreateRowSorter(true);
+        staffListTable.setBackground(new java.awt.Color(204, 255, 255));
+        staffListTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        staffListTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        staffListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAME", "EMAIL", "CONTACT", "GENDER", "ADDRESS", "JOINING", "STATUS"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        staffListTable.setAlignmentY(5.0F);
+        staffListTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        staffListTable.setFillsViewportHeight(true);
+        staffListTable.setGridColor(new java.awt.Color(255, 255, 255));
+        staffListTable.setRowHeight(40);
+        staffListTable.setRowMargin(10);
+        staffListTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        staffListTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        staffListTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        staffListTable.setShowHorizontalLines(true);
+        jScrollPane1.setViewportView(staffListTable);
+
         javax.swing.GroupLayout stafListContainerLayout = new javax.swing.GroupLayout(stafListContainer);
         stafListContainer.setLayout(stafListContainerLayout);
         stafListContainerLayout.setHorizontalGroup(
             stafListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 688, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         stafListContainerLayout.setVerticalGroup(
             stafListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+            .addGroup(stafListContainerLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel13.setBackground(new java.awt.Color(210, 255, 255));
@@ -397,7 +452,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(lblTotalStaffs)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(jLabel47)
                 .addGap(21, 21, 21))
         );
@@ -428,7 +483,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(lblBlocked)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addComponent(jLabel49)
                 .addGap(21, 21, 21))
         );
@@ -462,6 +517,48 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel14.setText("BLOCK");
         blockBtn.add(jLabel14, new java.awt.GridBagConstraints());
 
+        blockBtn1.setBackground(new java.awt.Color(0, 200, 255));
+        blockBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        blockBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        blockBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                blockBtn1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                blockBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                blockBtn1MouseExited(evt);
+            }
+        });
+        blockBtn1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("UNBLOCK");
+        blockBtn1.add(jLabel15, new java.awt.GridBagConstraints());
+
+        blockBtn2.setBackground(new java.awt.Color(0, 200, 255));
+        blockBtn2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        blockBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        blockBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                blockBtn2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                blockBtn2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                blockBtn2MouseExited(evt);
+            }
+        });
+        blockBtn2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("CHANGE PASSWORD");
+        blockBtn2.add(jLabel16, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout staffContainerLayout = new javax.swing.GroupLayout(staffContainer);
         staffContainer.setLayout(staffContainerLayout);
         staffContainerLayout.setHorizontalGroup(
@@ -470,30 +567,38 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addComponent(lblStaff)
                 .addGap(0, 945, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffContainerLayout.createSequentialGroup()
+            .addGroup(staffContainerLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(blockBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(53, 53, 53))
+                    .addComponent(stafListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(staffContainerLayout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(blockBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(blockBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         staffContainerLayout.setVerticalGroup(
             staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(staffContainerLayout.createSequentialGroup()
                 .addComponent(lblStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(staffContainerLayout.createSequentialGroup()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(blockBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(blockBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(37, 37, 37)
+                .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 352, Short.MAX_VALUE)
+                .addGap(35, 35, 35))
         );
 
         contentContainer.add(staffContainer, "card2");
@@ -1066,6 +1171,32 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void getStaffList(){
+            try{
+                DefaultTableModel tableModel = (DefaultTableModel) staffListTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select * from Staffs;";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while(rs.next()){
+                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("gender"),rs.getString("address"),rs.getString("joining"),rs.getBoolean("status")});
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+    }
+    private Connection databaseConnection(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/catering_management","root","");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(contentContainer, e);
+            return null;
+        }
+    }
     private void btncloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btncloseActionPerformed
@@ -1156,6 +1287,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void navStaffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseClicked
         panelChange(staffContainer,navStaffs);
+        try{
+                DefaultTableModel tableModel = (DefaultTableModel) staffListTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select * from Staffs;";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                while(rs.next()){
+                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("gender"),rs.getString("address"),rs.getString("joining"),rs.getBoolean("status")});
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
     }//GEN-LAST:event_navStaffsMouseClicked
 
     private void navAssetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseClicked
@@ -1181,6 +1326,30 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private void blockBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseExited
         blockBtn.setBackground(new Color(0,200,255));
     }//GEN-LAST:event_blockBtnMouseExited
+
+    private void blockBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn1MouseClicked
+
+    private void blockBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn1MouseEntered
+
+    private void blockBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn1MouseExited
+
+    private void blockBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn2MouseClicked
+
+    private void blockBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn2MouseEntered
+
+    private void blockBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_blockBtn2MouseExited
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1199,42 +1368,44 @@ public class DashboardAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new DashboardAdmin().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DashboardAdmin("deepanshuchauhan@gmail.com").setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
     private javax.swing.JPanel assetContainer;
     private javax.swing.JPanel blockBtn;
+    private javax.swing.JPanel blockBtn1;
+    private javax.swing.JPanel blockBtn2;
     private javax.swing.JButton btnclose;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel customerContainer;
@@ -1246,6 +1417,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1277,6 +1450,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAsset;
     private javax.swing.JLabel lblBlocked;
@@ -1300,6 +1474,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel serviceContainer;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
+    private javax.swing.JTable staffListTable;
     private javax.swing.JPanel topNav;
     // End of variables declaration//GEN-END:variables
 }
