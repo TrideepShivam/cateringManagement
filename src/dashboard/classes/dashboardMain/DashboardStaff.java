@@ -890,6 +890,9 @@ public class DashboardStaff extends javax.swing.JFrame {
         navLogout.setBackground(new java.awt.Color(0, 200, 255));
         navLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         navLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navLogoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 navLogoutMouseEntered(evt);
             }
@@ -1085,7 +1088,7 @@ public class DashboardStaff extends javax.swing.JFrame {
             .addGroup(topNavLayout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addGroup(topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(lblUsername)
                     .addComponent(btnclose))
                 .addContainerGap())
         );
@@ -1324,6 +1327,10 @@ public class DashboardStaff extends javax.swing.JFrame {
             partialQuery.append("address = '"+txt+"',");
         }
     }//GEN-LAST:event_changeAddressTxtFocusLost
+
+    private void navLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseClicked
+        
+    }//GEN-LAST:event_navLogoutMouseClicked
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);

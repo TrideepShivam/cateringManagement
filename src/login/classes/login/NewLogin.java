@@ -873,7 +873,6 @@ public class NewLogin extends javax.swing.JFrame {
                             SimpleDateFormat ft= new SimpleDateFormat("dd-MM-yyyy");
                             String today = ft.format(new Date());
                             query = "insert into Staffs values('"+(f+" "+l).toUpperCase()+"','"+e+"','"+c+"','"+g+"','"+p+"','"+a+"','"+today+"',true);";
-                            JOptionPane.showMessageDialog(contentContainer, query);
                             stmt = con.createStatement();
                             stmt.executeUpdate(query);
                            

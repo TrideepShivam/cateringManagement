@@ -62,6 +62,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblEvent = new javax.swing.JLabel();
         staffContainer = new javax.swing.JPanel();
         lblStaff = new javax.swing.JLabel();
+        stafListContainer = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
+        lblTotalStaffs = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jPanel14 = new javax.swing.JPanel();
+        lblBlocked = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        blockBtn = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         assetContainer = new javax.swing.JPanel();
         lblAsset = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
@@ -357,6 +366,102 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblStaff.setForeground(new java.awt.Color(0, 204, 255));
         lblStaff.setText("STAFFS");
 
+        stafListContainer.setBackground(new java.awt.Color(210, 255, 255));
+
+        javax.swing.GroupLayout stafListContainerLayout = new javax.swing.GroupLayout(stafListContainer);
+        stafListContainer.setLayout(stafListContainerLayout);
+        stafListContainerLayout.setHorizontalGroup(
+            stafListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 688, Short.MAX_VALUE)
+        );
+        stafListContainerLayout.setVerticalGroup(
+            stafListContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 638, Short.MAX_VALUE)
+        );
+
+        jPanel13.setBackground(new java.awt.Color(210, 255, 255));
+
+        lblTotalStaffs.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblTotalStaffs.setForeground(new java.awt.Color(0, 204, 255));
+        lblTotalStaffs.setText("1");
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel47.setText("TOTAL STAFFS");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(lblTotalStaffs)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(85, Short.MAX_VALUE)
+                .addComponent(jLabel47)
+                .addGap(21, 21, 21))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(lblTotalStaffs, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jLabel47)
+                .addGap(39, 39, 39))
+        );
+
+        jPanel14.setBackground(new java.awt.Color(210, 255, 255));
+
+        lblBlocked.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblBlocked.setForeground(new java.awt.Color(0, 204, 255));
+        lblBlocked.setText("1");
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel49.setText("BLOCKED");
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(lblBlocked)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel49)
+                .addGap(21, 21, 21))
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(lblBlocked, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jLabel49)
+                .addGap(39, 39, 39))
+        );
+
+        blockBtn.setBackground(new java.awt.Color(0, 200, 255));
+        blockBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        blockBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        blockBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                blockBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                blockBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                blockBtnMouseExited(evt);
+            }
+        });
+        blockBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("BLOCK");
+        blockBtn.add(jLabel14, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout staffContainerLayout = new javax.swing.GroupLayout(staffContainer);
         staffContainer.setLayout(staffContainerLayout);
         staffContainerLayout.setHorizontalGroup(
@@ -365,12 +470,30 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(73, 73, 73)
                 .addComponent(lblStaff)
                 .addGap(0, 945, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, staffContainerLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(blockBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(53, 53, 53))
         );
         staffContainerLayout.setVerticalGroup(
             staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(staffContainerLayout.createSequentialGroup()
                 .addComponent(lblStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(staffContainerLayout.createSequentialGroup()
+                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         contentContainer.add(staffContainer, "card2");
@@ -911,7 +1034,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(topNavLayout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addGroup(topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(lblUsername)
                     .addComponent(btnclose))
                 .addContainerGap())
         );
@@ -1046,6 +1169,18 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private void navAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseClicked
         panelChange(aboutContainer,navAbout);
     }//GEN-LAST:event_navAboutMouseClicked
+
+    private void blockBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseClicked
+        dispose();
+    }//GEN-LAST:event_blockBtnMouseClicked
+
+    private void blockBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseEntered
+        blockBtn.setBackground(Color.red);
+    }//GEN-LAST:event_blockBtnMouseEntered
+
+    private void blockBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseExited
+        blockBtn.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_blockBtnMouseExited
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1099,6 +1234,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
     private javax.swing.JPanel assetContainer;
+    private javax.swing.JPanel blockBtn;
     private javax.swing.JButton btnclose;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel customerContainer;
@@ -1109,6 +1245,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1126,6 +1263,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1133,16 +1272,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAsset;
+    private javax.swing.JLabel lblBlocked;
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblDashborad;
     private javax.swing.JLabel lblEvent;
     private javax.swing.JLabel lblService;
     private javax.swing.JLabel lblStaff;
+    private javax.swing.JLabel lblTotalStaffs;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel logoContainer;
     private javax.swing.JPanel menuContainer;
@@ -1155,6 +1298,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
     private javax.swing.JPanel serviceContainer;
+    private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JPanel topNav;
     // End of variables declaration//GEN-END:variables
