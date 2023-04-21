@@ -7,7 +7,7 @@ package login;
 import java.awt.Color;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-import dashboardMain.DashboardAdmin;
+import dashboardMain.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -687,20 +687,22 @@ public class NewLogin extends javax.swing.JFrame {
                 ResultSet rs = stmt.executeQuery(query);
                 if(rs.next()){
                     if(rs.getString("pwd").equals(pwd)){
-                           DashboardAdmin dashboard = new DashboardAdmin();
+                           DashboardAdmin dashboard = new DashboardAdmin(username);
                            dashboard.setVisible(true);
                            this.dispose();
                     }else{
-                        JOptionPane.showMessageDialog(contentContainer, "Please enter a valid password.");
+                        JOptionPane.showMessageDialog(contentContainer, "Please Enter a Valid Password.");
                     }
                 }else{
                     query = "select pwd from Staffs where email = '"+username+"';";
                     rs = stmt.executeQuery(query);
                     if(rs.next()){
                         if(rs.getString("pwd").equals(pwd)){
-                             JOptionPane.showMessageDialog(contentContainer, "got a staff id and password matches");
+                             DashboardStaff dashboard = new DashboardStaff(username);
+                             dashboard.setVisible(true);
+                             this.dispose();
                         }else{
-                             JOptionPane.showMessageDialog(contentContainer, "got a staff id but password is wrong");
+                             JOptionPane.showMessageDialog(contentContainer, "Please Enter a Valid Password");
                         }
                     }else{
                         JOptionPane.showMessageDialog(contentContainer, "You Don't have an account.");

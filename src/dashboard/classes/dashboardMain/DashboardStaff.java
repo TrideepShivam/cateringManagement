@@ -6,26 +6,33 @@ package dashboardMain;
 
 import java.awt.Color;
 import java.awt.Container;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.sql.*;
 
 /**
  *
  * @author Trideep Shivam
  */
-public class DashboardAdmin extends javax.swing.JFrame {
+public class DashboardStaff extends javax.swing.JFrame {
 
     /**
      * Creates new form DashboardAdmin
      */
     Color onEnter,onExit,onClick;
     JPanel currentClickedButton;
-    public DashboardAdmin() {
+    String userId;
+    StringBuilder partialQuery;
+    public DashboardStaff(String Id) {
         initComponents();
         currentClickedButton=navDashboard;
         onEnter = new Color(0,190,250);
         onExit = new Color(0,200,255);
         onClick = new Color(50,50,50);
         navDashboard.setBackground(onClick);
+        userId = Id;
+        partialQuery =new StringBuilder("");
+        lblUsername.setText("Hi, "+Id);
     }
 
     /**
@@ -37,6 +44,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel13 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
         contentContainer = new javax.swing.JPanel();
         dashboardContainer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -48,21 +57,51 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel41 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
         jLabel42 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        serviceContainer = new javax.swing.JPanel();
+        attendanceContainer = new javax.swing.JPanel();
         lblService = new javax.swing.JLabel();
-        eventContainer = new javax.swing.JPanel();
+        profileContainer = new javax.swing.JPanel();
         lblEvent = new javax.swing.JLabel();
-        staffContainer = new javax.swing.JPanel();
-        lblStaff = new javax.swing.JLabel();
-        assetContainer = new javax.swing.JPanel();
-        lblAsset = new javax.swing.JLabel();
-        customerContainer = new javax.swing.JPanel();
-        lblCustomer = new javax.swing.JLabel();
+        jPanel12 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        lblEvent1 = new javax.swing.JLabel();
+        changeNameTxt = new javax.swing.JTextField();
+        changeContactTxt = new javax.swing.JTextField();
+        changeAddressTxt = new javax.swing.JTextField();
+        changePersonalBtn = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel51 = new javax.swing.JLabel();
+        showName = new javax.swing.JTextField();
+        showEmail = new javax.swing.JTextField();
+        jLabel52 = new javax.swing.JLabel();
+        showContact = new javax.swing.JTextField();
+        jLabel53 = new javax.swing.JLabel();
+        showGender = new javax.swing.JTextField();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        showPassword = new javax.swing.JTextField();
+        showJoining = new javax.swing.JTextField();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        showAddress = new javax.swing.JTextArea();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel48 = new javax.swing.JLabel();
+        jLabel49 = new javax.swing.JLabel();
+        jLabel50 = new javax.swing.JLabel();
+        lblEvent2 = new javax.swing.JLabel();
+        changeOldPasswordTxt = new javax.swing.JTextField();
+        changeNewPasswordTxt = new javax.swing.JTextField();
+        changeReEnterTxt = new javax.swing.JTextField();
+        changePasswordBtn = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
         aboutContainer = new javax.swing.JPanel();
         lblAbout = new javax.swing.JLabel();
         logoContainer = new javax.swing.JPanel();
@@ -70,33 +109,41 @@ public class DashboardAdmin extends javax.swing.JFrame {
         navDashboard = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        navServices = new javax.swing.JPanel();
+        navAttendance = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        navStaffs = new javax.swing.JPanel();
+        navProfile = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        navAssets = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         navLogout = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        navEvent = new javax.swing.JPanel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
         navAbout = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        navCustomer = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         topNav = new javax.swing.JPanel();
         btnclose = new javax.swing.JButton();
         lblUsername = new javax.swing.JLabel();
+
+        jPanel13.setBackground(new java.awt.Color(210, 255, 255));
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 481, Short.MAX_VALUE)
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
+        );
+
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField3.setText("jTextField1");
+        jTextField3.setBorder(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 0));
@@ -117,7 +164,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel37.setText("0");
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel38.setText("EVENT DONE");
+        jLabel38.setText("TOTAL PRESENT");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -128,17 +175,17 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel37)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(jLabel38)
-                .addGap(27, 27, 27))
+                .addGap(18, 18, 18))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel38)
-                .addGap(33, 33, 33))
+                .addGap(28, 28, 28))
         );
 
         lblDashborad.setBackground(new java.awt.Color(204, 255, 255));
@@ -153,7 +200,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel40.setText("0");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel41.setText("HAPPENINGS");
+        jLabel41.setText("LAST MONTH PRESENT");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -162,10 +209,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel40)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
-                .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel41)
                 .addGap(14, 14, 14))
         );
         jPanel8Layout.setVerticalGroup(
@@ -183,8 +230,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel42.setForeground(new java.awt.Color(0, 204, 255));
         jLabel42.setText("0");
 
-        jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel43.setText("PENDINGS");
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel45.setText("STATUS");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -193,33 +240,29 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(jLabel42)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                    .addContainerGap(146, Short.MAX_VALUE)
-                    .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(16, 16, 16)))
+                .addContainerGap(197, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                    .addContainerGap(154, Short.MAX_VALUE)
-                    .addComponent(jLabel43)
-                    .addGap(26, 26, 26)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
         );
 
         jPanel10.setBackground(new java.awt.Color(210, 255, 255));
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
         jLabel44.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel44.setText("0");
+        jLabel44.setText("1");
 
-        jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel45.setText("PRESENT STAFFS");
+        jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel43.setText("EVENTS DONE");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -228,19 +271,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel44)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel43)
+                .addGap(21, 21, 21))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
-                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addComponent(jLabel43)
+                .addGap(39, 39, 39))
         );
 
         jPanel11.setBackground(new java.awt.Color(210, 255, 255));
@@ -270,10 +313,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(dashboardContainerLayout.createSequentialGroup()
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
+                                .addGap(81, 81, 81)
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 58, Short.MAX_VALUE)
+                        .addGap(18, 90, Short.MAX_VALUE)
                         .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -297,130 +340,394 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         contentContainer.add(dashboardContainer, "card2");
 
-        serviceContainer.setBackground(new java.awt.Color(240, 255, 255));
+        attendanceContainer.setBackground(new java.awt.Color(240, 255, 255));
 
         lblService.setBackground(new java.awt.Color(204, 255, 255));
         lblService.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblService.setForeground(new java.awt.Color(0, 204, 255));
-        lblService.setText("SERVICES");
+        lblService.setText("ATTENDANCE");
 
-        javax.swing.GroupLayout serviceContainerLayout = new javax.swing.GroupLayout(serviceContainer);
-        serviceContainer.setLayout(serviceContainerLayout);
-        serviceContainerLayout.setHorizontalGroup(
-            serviceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(serviceContainerLayout.createSequentialGroup()
+        javax.swing.GroupLayout attendanceContainerLayout = new javax.swing.GroupLayout(attendanceContainer);
+        attendanceContainer.setLayout(attendanceContainerLayout);
+        attendanceContainerLayout.setHorizontalGroup(
+            attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(attendanceContainerLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(lblService)
-                .addGap(0, 921, Short.MAX_VALUE))
+                .addGap(0, 933, Short.MAX_VALUE))
         );
-        serviceContainerLayout.setVerticalGroup(
-            serviceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(serviceContainerLayout.createSequentialGroup()
+        attendanceContainerLayout.setVerticalGroup(
+            attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(attendanceContainerLayout.createSequentialGroup()
                 .addComponent(lblService, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(680, Short.MAX_VALUE))
         );
 
-        contentContainer.add(serviceContainer, "card2");
+        contentContainer.add(attendanceContainer, "card2");
 
-        eventContainer.setBackground(new java.awt.Color(240, 255, 255));
+        profileContainer.setBackground(new java.awt.Color(240, 255, 255));
 
         lblEvent.setBackground(new java.awt.Color(204, 255, 255));
         lblEvent.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblEvent.setForeground(new java.awt.Color(0, 204, 255));
-        lblEvent.setText("EVENT");
+        lblEvent.setText("PROFILE");
 
-        javax.swing.GroupLayout eventContainerLayout = new javax.swing.GroupLayout(eventContainer);
-        eventContainer.setLayout(eventContainerLayout);
-        eventContainerLayout.setHorizontalGroup(
-            eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eventContainerLayout.createSequentialGroup()
+        jPanel12.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel39.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel39.setText("Name");
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel46.setText("Contact");
+
+        jLabel47.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel47.setText("Address");
+
+        lblEvent1.setBackground(new java.awt.Color(204, 255, 255));
+        lblEvent1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblEvent1.setForeground(new java.awt.Color(0, 204, 255));
+        lblEvent1.setText("Change Personal info");
+
+        changeNameTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeNameTxt.setBorder(null);
+        changeNameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                changeNameTxtFocusLost(evt);
+            }
+        });
+
+        changeContactTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeContactTxt.setBorder(null);
+        changeContactTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                changeContactTxtFocusLost(evt);
+            }
+        });
+
+        changeAddressTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeAddressTxt.setBorder(null);
+        changeAddressTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                changeAddressTxtFocusLost(evt);
+            }
+        });
+
+        changePersonalBtn.setBackground(new java.awt.Color(0, 200, 255));
+        changePersonalBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        changePersonalBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePersonalBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePersonalBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                changePersonalBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                changePersonalBtnMouseExited(evt);
+            }
+        });
+        changePersonalBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Change");
+        changePersonalBtn.add(jLabel13, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEvent1)
+                    .addComponent(jLabel39)
+                    .addComponent(jLabel46)
+                    .addComponent(jLabel47))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changeAddressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeContactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changePersonalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(lblEvent1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel39)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel46)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel47))
+                    .addGroup(jPanel12Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(changeNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(changeContactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(changeAddressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(changePersonalBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel15.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel51.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel51.setText("Name");
+
+        showName.setEditable(false);
+        showName.setBackground(new java.awt.Color(200, 250, 250));
+        showName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showName.setBorder(null);
+
+        showEmail.setEditable(false);
+        showEmail.setBackground(new java.awt.Color(200, 250, 250));
+        showEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showEmail.setBorder(null);
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel52.setText("Email");
+
+        showContact.setEditable(false);
+        showContact.setBackground(new java.awt.Color(200, 250, 250));
+        showContact.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showContact.setBorder(null);
+
+        jLabel53.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel53.setText("Contact");
+
+        showGender.setEditable(false);
+        showGender.setBackground(new java.awt.Color(200, 250, 250));
+        showGender.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showGender.setBorder(null);
+
+        jLabel54.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel54.setText("Gender");
+
+        jLabel55.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel55.setText("Password");
+
+        showPassword.setEditable(false);
+        showPassword.setBackground(new java.awt.Color(200, 250, 250));
+        showPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showPassword.setText("*******************");
+        showPassword.setBorder(null);
+
+        showJoining.setEditable(false);
+        showJoining.setBackground(new java.awt.Color(200, 250, 250));
+        showJoining.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showJoining.setBorder(null);
+        showJoining.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showJoiningActionPerformed(evt);
+            }
+        });
+
+        jLabel56.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel56.setText("Join Date");
+
+        jLabel57.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel57.setText("Address");
+
+        showAddress.setEditable(false);
+        showAddress.setBackground(new java.awt.Color(200, 250, 250));
+        showAddress.setColumns(20);
+        showAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showAddress.setRows(5);
+        showAddress.setBorder(null);
+        jScrollPane1.setViewportView(showAddress);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel55)
+                        .addComponent(jLabel56, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jLabel54)
+                    .addComponent(jLabel57)
+                    .addComponent(jLabel53)
+                    .addComponent(jLabel52)
+                    .addComponent(jLabel51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(showName)
+                    .addComponent(showEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showContact, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showPassword, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showJoining, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(showGender, javax.swing.GroupLayout.Alignment.LEADING))
+                .addGap(55, 55, 55))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel51)
+                    .addComponent(showName, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel52)
+                    .addComponent(showEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel53)
+                    .addComponent(showContact, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel54)
+                    .addComponent(showGender, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel55)
+                    .addComponent(showPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel56)
+                    .addComponent(showJoining, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel57)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+
+        jPanel16.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel48.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel48.setText("Old Password");
+
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel49.setText("New Password");
+
+        jLabel50.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel50.setText("Re-Enter New");
+
+        lblEvent2.setBackground(new java.awt.Color(204, 255, 255));
+        lblEvent2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblEvent2.setForeground(new java.awt.Color(0, 204, 255));
+        lblEvent2.setText("Change Password");
+
+        changeOldPasswordTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeOldPasswordTxt.setBorder(null);
+
+        changeNewPasswordTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeNewPasswordTxt.setBorder(null);
+
+        changeReEnterTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeReEnterTxt.setBorder(null);
+
+        changePasswordBtn.setBackground(new java.awt.Color(0, 200, 255));
+        changePasswordBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        changePasswordBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePasswordBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePasswordBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                changePasswordBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                changePasswordBtnMouseExited(evt);
+            }
+        });
+        changePasswordBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Change");
+        changePasswordBtn.add(jLabel14, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblEvent2)
+                    .addComponent(jLabel48)
+                    .addComponent(jLabel49)
+                    .addComponent(jLabel50))
+                .addContainerGap(275, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(changeReEnterTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeNewPasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changeOldPasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(changePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addComponent(lblEvent2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel48)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel49)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel50))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(changeOldPasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(changeNewPasswordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(changeReEnterTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(changePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout profileContainerLayout = new javax.swing.GroupLayout(profileContainer);
+        profileContainer.setLayout(profileContainerLayout);
+        profileContainerLayout.setHorizontalGroup(
+            profileContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profileContainerLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(lblEvent)
-                .addGap(0, 954, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, profileContainerLayout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGroup(profileContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
-        eventContainerLayout.setVerticalGroup(
-            eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(eventContainerLayout.createSequentialGroup()
+        profileContainerLayout.setVerticalGroup(
+            profileContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(profileContainerLayout.createSequentialGroup()
                 .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addGroup(profileContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(profileContainerLayout.createSequentialGroup()
+                        .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
-        contentContainer.add(eventContainer, "card2");
-
-        staffContainer.setBackground(new java.awt.Color(240, 255, 255));
-
-        lblStaff.setBackground(new java.awt.Color(204, 255, 255));
-        lblStaff.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblStaff.setForeground(new java.awt.Color(0, 204, 255));
-        lblStaff.setText("STAFFS");
-
-        javax.swing.GroupLayout staffContainerLayout = new javax.swing.GroupLayout(staffContainer);
-        staffContainer.setLayout(staffContainerLayout);
-        staffContainerLayout.setHorizontalGroup(
-            staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(staffContainerLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblStaff)
-                .addGap(0, 945, Short.MAX_VALUE))
-        );
-        staffContainerLayout.setVerticalGroup(
-            staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(staffContainerLayout.createSequentialGroup()
-                .addComponent(lblStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
-        );
-
-        contentContainer.add(staffContainer, "card2");
-
-        assetContainer.setBackground(new java.awt.Color(240, 255, 255));
-
-        lblAsset.setBackground(new java.awt.Color(204, 255, 255));
-        lblAsset.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblAsset.setForeground(new java.awt.Color(0, 204, 255));
-        lblAsset.setText("ASSETS");
-
-        javax.swing.GroupLayout assetContainerLayout = new javax.swing.GroupLayout(assetContainer);
-        assetContainer.setLayout(assetContainerLayout);
-        assetContainerLayout.setHorizontalGroup(
-            assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(assetContainerLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblAsset)
-                .addGap(0, 944, Short.MAX_VALUE))
-        );
-        assetContainerLayout.setVerticalGroup(
-            assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(assetContainerLayout.createSequentialGroup()
-                .addComponent(lblAsset, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
-        );
-
-        contentContainer.add(assetContainer, "card2");
-
-        customerContainer.setBackground(new java.awt.Color(240, 255, 255));
-
-        lblCustomer.setBackground(new java.awt.Color(204, 255, 255));
-        lblCustomer.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblCustomer.setForeground(new java.awt.Color(0, 204, 255));
-        lblCustomer.setText("CUSTOMER");
-
-        javax.swing.GroupLayout customerContainerLayout = new javax.swing.GroupLayout(customerContainer);
-        customerContainer.setLayout(customerContainerLayout);
-        customerContainerLayout.setHorizontalGroup(
-            customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerContainerLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblCustomer)
-                .addGap(0, 898, Short.MAX_VALUE))
-        );
-        customerContainerLayout.setVerticalGroup(
-            customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerContainerLayout.createSequentialGroup()
-                .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
-        );
-
-        contentContainer.add(customerContainer, "card2");
+        contentContainer.add(profileContainer, "card2");
 
         aboutContainer.setBackground(new java.awt.Color(240, 255, 255));
 
@@ -436,7 +743,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(aboutContainerLayout.createSequentialGroup()
                 .addGap(73, 73, 73)
                 .addComponent(lblAbout)
-                .addGap(0, 947, Short.MAX_VALUE))
+                .addGap(0, 1010, Short.MAX_VALUE))
         );
         aboutContainerLayout.setVerticalGroup(
             aboutContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -496,129 +803,88 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGap(18, 18, 18))))
         );
 
-        navServices.setBackground(new java.awt.Color(0, 200, 255));
-        navServices.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        navServices.addMouseListener(new java.awt.event.MouseAdapter() {
+        navAttendance.setBackground(new java.awt.Color(0, 200, 255));
+        navAttendance.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        navAttendance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navServicesMouseClicked(evt);
+                navAttendanceMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                navServicesMouseEntered(evt);
+                navAttendanceMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                navServicesMouseExited(evt);
+                navAttendanceMouseExited(evt);
             }
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("SERVICES");
+        jLabel4.setText("ATTENDANCE");
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/technical-support.png"))); // NOI18N
 
-        javax.swing.GroupLayout navServicesLayout = new javax.swing.GroupLayout(navServices);
-        navServices.setLayout(navServicesLayout);
-        navServicesLayout.setHorizontalGroup(
-            navServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navServicesLayout.createSequentialGroup()
+        javax.swing.GroupLayout navAttendanceLayout = new javax.swing.GroupLayout(navAttendance);
+        navAttendance.setLayout(navAttendanceLayout);
+        navAttendanceLayout.setHorizontalGroup(
+            navAttendanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navAttendanceLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(37, 37, 37)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        navServicesLayout.setVerticalGroup(
-            navServicesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navServicesLayout.createSequentialGroup()
+        navAttendanceLayout.setVerticalGroup(
+            navAttendanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navAttendanceLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navServicesLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navAttendanceLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        navStaffs.setBackground(new java.awt.Color(0, 200, 255));
-        navStaffs.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        navStaffs.addMouseListener(new java.awt.event.MouseAdapter() {
+        navProfile.setBackground(new java.awt.Color(0, 200, 255));
+        navProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        navProfile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navStaffsMouseClicked(evt);
+                navProfileMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                navStaffsMouseEntered(evt);
+                navProfileMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                navStaffsMouseExited(evt);
+                navProfileMouseExited(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("STAFFS");
+        jLabel5.setText("PROFILE");
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/id-card.png"))); // NOI18N
 
-        javax.swing.GroupLayout navStaffsLayout = new javax.swing.GroupLayout(navStaffs);
-        navStaffs.setLayout(navStaffsLayout);
-        navStaffsLayout.setHorizontalGroup(
-            navStaffsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navStaffsLayout.createSequentialGroup()
+        javax.swing.GroupLayout navProfileLayout = new javax.swing.GroupLayout(navProfile);
+        navProfile.setLayout(navProfileLayout);
+        navProfileLayout.setHorizontalGroup(
+            navProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(navProfileLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel11)
                 .addGap(35, 35, 35)
                 .addComponent(jLabel5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
-        navStaffsLayout.setVerticalGroup(
-            navStaffsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navStaffsLayout.createSequentialGroup()
+        navProfileLayout.setVerticalGroup(
+            navProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, navProfileLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(navStaffsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(navProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-        );
-
-        navAssets.setBackground(new java.awt.Color(0, 200, 255));
-        navAssets.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        navAssets.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navAssetsMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                navAssetsMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                navAssetsMouseExited(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("ASSETS");
-
-        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/big-data.png"))); // NOI18N
-
-        javax.swing.GroupLayout navAssetsLayout = new javax.swing.GroupLayout(navAssets);
-        navAssets.setLayout(navAssetsLayout);
-        navAssetsLayout.setHorizontalGroup(
-            navAssetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navAssetsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel13)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        navAssetsLayout.setVerticalGroup(
-            navAssetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navAssetsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(navAssetsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         navLogout.setBackground(new java.awt.Color(0, 200, 255));
@@ -647,7 +913,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addGap(32, 32, 32)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         navLogoutLayout.setVerticalGroup(
             navLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -656,49 +922,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGroup(navLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        navEvent.setBackground(new java.awt.Color(0, 200, 255));
-        navEvent.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        navEvent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navEventMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                navEventMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                navEventMouseExited(evt);
-            }
-        });
-
-        jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("EVENT");
-
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/event.png"))); // NOI18N
-
-        javax.swing.GroupLayout navEventLayout = new javax.swing.GroupLayout(navEvent);
-        navEvent.setLayout(navEventLayout);
-        navEventLayout.setHorizontalGroup(
-            navEventLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navEventLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel32)
-                .addGap(37, 37, 37)
-                .addComponent(jLabel31)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        navEventLayout.setVerticalGroup(
-            navEventLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navEventLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(navEventLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(navEventLayout.createSequentialGroup()
-                        .addComponent(jLabel32)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel31, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -746,59 +969,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        navCustomer.setBackground(new java.awt.Color(0, 200, 255));
-        navCustomer.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        navCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                navCustomerMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                navCustomerMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                navCustomerMouseExited(evt);
-            }
-        });
-
-        jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("CUSTOMER");
-
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/communication.png"))); // NOI18N
-
-        javax.swing.GroupLayout navCustomerLayout = new javax.swing.GroupLayout(navCustomer);
-        navCustomer.setLayout(navCustomerLayout);
-        navCustomerLayout.setHorizontalGroup(
-            navCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navCustomerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel28)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel27)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        navCustomerLayout.setVerticalGroup(
-            navCustomerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(navCustomerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel28)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout menuContainerLayout = new javax.swing.GroupLayout(menuContainer);
         menuContainer.setLayout(menuContainerLayout);
         menuContainerLayout.setHorizontalGroup(
             menuContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(navAssets, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(navLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(menuContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(navCustomer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(navEvent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(navServices, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(navDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(navAbout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(navStaffs, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(menuContainerLayout.createSequentialGroup()
+                .addGroup(menuContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menuContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(navAttendance, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(navDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(navAbout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(navProfile, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(navLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
         menuContainerLayout.setVerticalGroup(
             menuContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -806,15 +989,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(navDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(navServices, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navAttendance, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(navEvent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(navStaffs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(navAssets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(navCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(navProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(navAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -890,15 +1067,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsername.setText("Hi, User");
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblUsername.setText("Hi, Staff");
 
         javax.swing.GroupLayout topNavLayout = new javax.swing.GroupLayout(topNav);
         topNav.setLayout(topNavLayout);
         topNavLayout.setHorizontalGroup(
             topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavLayout.createSequentialGroup()
-                .addGap(0, 946, Short.MAX_VALUE)
-                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 658, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnclose, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -935,7 +1113,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         getAccessibleContext().setAccessibleName("dashboard");
 
-        setSize(new java.awt.Dimension(1389, 761));
+        setSize(new java.awt.Dimension(1451, 761));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -951,14 +1129,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
         btnclose.setForeground(Color.white);
     }//GEN-LAST:event_btncloseMouseExited
 
-    private void navEventMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseExited
-       setHoverEffect(navEvent,false);
-    }//GEN-LAST:event_navEventMouseExited
-
-    private void navEventMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseEntered
-        setHoverEffect(navEvent,true);
-    }//GEN-LAST:event_navEventMouseEntered
-
     private void navLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseExited
         setHoverEffect(navLogout,false);
     }//GEN-LAST:event_navLogoutMouseExited
@@ -967,29 +1137,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
         navLogout.setBackground(Color.red);
     }//GEN-LAST:event_navLogoutMouseEntered
 
-    private void navAssetsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseExited
-        setHoverEffect(navAssets,false);
-    }//GEN-LAST:event_navAssetsMouseExited
+    private void navProfileMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navProfileMouseExited
+        setHoverEffect(navProfile,false);
+    }//GEN-LAST:event_navProfileMouseExited
 
-    private void navAssetsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseEntered
-        setHoverEffect(navAssets,true);
-    }//GEN-LAST:event_navAssetsMouseEntered
+    private void navProfileMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navProfileMouseEntered
+        setHoverEffect(navProfile,true);
+    }//GEN-LAST:event_navProfileMouseEntered
 
-    private void navStaffsMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseExited
-        setHoverEffect(navStaffs,false);
-    }//GEN-LAST:event_navStaffsMouseExited
+    private void navAttendanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAttendanceMouseExited
+        setHoverEffect(navAttendance,false);
+    }//GEN-LAST:event_navAttendanceMouseExited
 
-    private void navStaffsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseEntered
-        setHoverEffect(navStaffs,true);
-    }//GEN-LAST:event_navStaffsMouseEntered
-
-    private void navServicesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseExited
-        setHoverEffect(navServices,false);
-    }//GEN-LAST:event_navServicesMouseExited
-
-    private void navServicesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseEntered
-        setHoverEffect(navServices,true);
-    }//GEN-LAST:event_navServicesMouseEntered
+    private void navAttendanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAttendanceMouseEntered
+        setHoverEffect(navAttendance,true);
+    }//GEN-LAST:event_navAttendanceMouseEntered
 
     private void navDashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseExited
         setHoverEffect(navDashboard,false);
@@ -1007,41 +1169,161 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setHoverEffect(navAbout,true);
     }//GEN-LAST:event_navAboutMouseEntered
 
-    private void navCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseExited
-        setHoverEffect(navCustomer,false);
-    }//GEN-LAST:event_navCustomerMouseExited
-
-    private void navCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseEntered
-        setHoverEffect(navCustomer,true);
-    }//GEN-LAST:event_navCustomerMouseEntered
-
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
        panelChange(dashboardContainer,navDashboard);
     }//GEN-LAST:event_navDashboardMouseClicked
 
-    private void navServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseClicked
-        panelChange(serviceContainer,navServices);
-    }//GEN-LAST:event_navServicesMouseClicked
+    private void navAttendanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAttendanceMouseClicked
+        panelChange(attendanceContainer,navAttendance);
+    }//GEN-LAST:event_navAttendanceMouseClicked
 
-    private void navEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navEventMouseClicked
-        panelChange(eventContainer,navEvent);
-    }//GEN-LAST:event_navEventMouseClicked
-
-    private void navStaffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseClicked
-        panelChange(staffContainer,navStaffs);
-    }//GEN-LAST:event_navStaffsMouseClicked
-
-    private void navAssetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseClicked
-        panelChange(assetContainer,navAssets);
-    }//GEN-LAST:event_navAssetsMouseClicked
-
-    private void navCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseClicked
-        panelChange(customerContainer,navCustomer);
-    }//GEN-LAST:event_navCustomerMouseClicked
+    
+    private Connection databaseConnection(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/catering_management","root","");
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(contentContainer, e);
+            return null;
+        }
+    }
+    
+    
+    private void getUserDetail(){
+        try{
+            Connection con = databaseConnection();
+            String query = "select * from Staffs where email = '"+userId+"';";
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            if(rs.next()){
+                showName.setText(rs.getString("name"));
+                showEmail.setText(rs.getString("email"));
+                showContact.setText(rs.getString("contact"));
+                showGender.setText(rs.getString("gender"));
+                showJoining.setText(rs.getString("joining"));
+                showAddress.setText(rs.getString("address"));
+            }else{
+                JOptionPane.showMessageDialog(contentContainer, "Contact to the Admin.");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(contentContainer,e);
+        }
+    }
+    
+    
+    private void navProfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navProfileMouseClicked
+        panelChange(profileContainer,navProfile);
+        getUserDetail();
+    }//GEN-LAST:event_navProfileMouseClicked
 
     private void navAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseClicked
         panelChange(aboutContainer,navAbout);
     }//GEN-LAST:event_navAboutMouseClicked
+
+    private void changePersonalBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtnMouseClicked
+        String name = changeNameTxt.getText();
+        String contact = changeContactTxt.getText();
+        String address = changeAddressTxt.getText();
+        if(name.equals("")&&contact.equals("")&&address.equals("")){
+            JOptionPane.showMessageDialog(contentContainer,"Please fill at least one field to change.");
+        }else{
+            try{
+                Connection con = databaseConnection();
+                String query = "update staffs set "+partialQuery.substring(0, partialQuery.length()-1)+" where email = '"+userId+"'";
+                JOptionPane.showMessageDialog(contentContainer,partialQuery);
+                JOptionPane.showMessageDialog(contentContainer,query);
+                Statement stmt = con.createStatement();
+                stmt.executeUpdate(query);
+                JOptionPane.showMessageDialog(contentContainer, "Your Data is Updated Successfully");
+                changeNameTxt.setText("");
+                changeContactTxt.setText("");
+                changeAddressTxt.setText("");
+                getUserDetail();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer,e);
+            }
+        }
+    }//GEN-LAST:event_changePersonalBtnMouseClicked
+
+    private void changePersonalBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtnMouseEntered
+        changePersonalBtn.setBackground(Color.red);
+    }//GEN-LAST:event_changePersonalBtnMouseEntered
+
+    private void changePersonalBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtnMouseExited
+        changePersonalBtn.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_changePersonalBtnMouseExited
+
+    private void changePasswordBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordBtnMouseClicked
+        String oldpwd = changeOldPasswordTxt.getText();
+        String newpwd = changeNewPasswordTxt.getText();
+        String renewpwd = changeReEnterTxt.getText();
+        if(oldpwd.equals("")||newpwd.equals("")||renewpwd.equals("")){
+            JOptionPane.showMessageDialog(contentContainer,"Please fill all required fields to change.");
+        }else{
+            try{
+                Connection con = databaseConnection();
+                String query = "select pwd from Staffs where email = '"+userId+"';";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if(rs.next()){
+                    if(rs.getString("pwd").equals(oldpwd)){
+                        if(newpwd.equals(renewpwd)){
+                            query="update staffs set pwd='"+newpwd+"' where email = '"+userId+"'";
+                            stmt.executeUpdate(query);
+                            JOptionPane.showMessageDialog(contentContainer, "Your Password is Updated Successfully");
+                        }else{
+                            JOptionPane.showMessageDialog(contentContainer, "Password did not match.");
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(contentContainer, "Please Enter a Valid Old Password");
+                    }
+                    changeOldPasswordTxt.setText("");
+                    changeNewPasswordTxt.setText("");
+                    changeReEnterTxt.setText("");
+                }else{
+                    JOptionPane.showMessageDialog(contentContainer, "You Don't have an account.");
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+        }
+            
+    }//GEN-LAST:event_changePasswordBtnMouseClicked
+
+    private void changePasswordBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordBtnMouseEntered
+        changePasswordBtn.setBackground(Color.red);
+    }//GEN-LAST:event_changePasswordBtnMouseEntered
+
+    private void changePasswordBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePasswordBtnMouseExited
+        changePasswordBtn.setBackground(new Color(0,200,255));
+    }//GEN-LAST:event_changePasswordBtnMouseExited
+
+    private void showJoiningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showJoiningActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showJoiningActionPerformed
+
+    private void changeNameTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_changeNameTxtFocusLost
+        String txt = changeNameTxt.getText();
+        if(!txt.equals("")){
+            partialQuery.append("name = '"+txt+"',");
+        }
+    }//GEN-LAST:event_changeNameTxtFocusLost
+
+    private void changeContactTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_changeContactTxtFocusLost
+        String txt = changeContactTxt.getText();
+        if(!txt.equals("")){
+            partialQuery.append("contact = '"+txt+"',");
+        }
+    }//GEN-LAST:event_changeContactTxtFocusLost
+
+    private void changeAddressTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_changeAddressTxtFocusLost
+        String txt = changeAddressTxt.getText();
+        if(!txt.equals("")){
+            partialQuery.append("address = '"+txt+"',");
+        }
+    }//GEN-LAST:event_changeAddressTxtFocusLost
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1060,61 +1342,65 @@ public class DashboardAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new DashboardAdmin().setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DashboardStaff("arinkhan@ymail.com").setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
-    private javax.swing.JPanel assetContainer;
+    private javax.swing.JPanel attendanceContainer;
     private javax.swing.JButton btnclose;
+    private javax.swing.JTextField changeAddressTxt;
+    private javax.swing.JTextField changeContactTxt;
+    private javax.swing.JTextField changeNameTxt;
+    private javax.swing.JTextField changeNewPasswordTxt;
+    private javax.swing.JTextField changeOldPasswordTxt;
+    private javax.swing.JPanel changePasswordBtn;
+    private javax.swing.JPanel changePersonalBtn;
+    private javax.swing.JTextField changeReEnterTxt;
     private javax.swing.JPanel contentContainer;
-    private javax.swing.JPanel customerContainer;
     private javax.swing.JPanel dashboardContainer;
-    private javax.swing.JPanel eventContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -1122,36 +1408,55 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel50;
+    private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblAbout;
-    private javax.swing.JLabel lblAsset;
-    private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblDashborad;
     private javax.swing.JLabel lblEvent;
+    private javax.swing.JLabel lblEvent1;
+    private javax.swing.JLabel lblEvent2;
     private javax.swing.JLabel lblService;
-    private javax.swing.JLabel lblStaff;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel logoContainer;
     private javax.swing.JPanel menuContainer;
     private javax.swing.JPanel navAbout;
-    private javax.swing.JPanel navAssets;
-    private javax.swing.JPanel navCustomer;
+    private javax.swing.JPanel navAttendance;
     private javax.swing.JPanel navDashboard;
-    private javax.swing.JPanel navEvent;
     private javax.swing.JPanel navLogout;
-    private javax.swing.JPanel navServices;
-    private javax.swing.JPanel navStaffs;
-    private javax.swing.JPanel serviceContainer;
-    private javax.swing.JPanel staffContainer;
+    private javax.swing.JPanel navProfile;
+    private javax.swing.JPanel profileContainer;
+    private javax.swing.JTextArea showAddress;
+    private javax.swing.JTextField showContact;
+    private javax.swing.JTextField showEmail;
+    private javax.swing.JTextField showGender;
+    private javax.swing.JTextField showJoining;
+    private javax.swing.JTextField showName;
+    private javax.swing.JTextField showPassword;
     private javax.swing.JPanel topNav;
     // End of variables declaration//GEN-END:variables
 }

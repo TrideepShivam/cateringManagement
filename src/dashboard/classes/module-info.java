@@ -7,4 +7,5 @@ module dashboard {
     requires java.desktop;
     requires java.logging;
     exports dashboardMain;
+    requires java.sql;
 }

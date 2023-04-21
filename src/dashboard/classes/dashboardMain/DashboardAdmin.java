@@ -19,13 +19,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
      */
     Color onEnter,onExit,onClick;
     JPanel currentClickedButton;
-    public DashboardAdmin() {
+    String userId;
+    public DashboardAdmin(String Id) {
         initComponents();
         currentClickedButton=navDashboard;
         onEnter = new Color(0,190,250);
         onExit = new Color(0,200,255);
         onClick = new Color(50,50,50);
         navDashboard.setBackground(onClick);
+        userId = Id;
+        lblUsername.setText("Hi, "+Id);
     }
 
     /**
@@ -890,15 +893,16 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         lblUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lblUsername.setText("Hi, User");
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblUsername.setText("Hi, Admin");
 
         javax.swing.GroupLayout topNavLayout = new javax.swing.GroupLayout(topNav);
         topNav.setLayout(topNavLayout);
         topNavLayout.setHorizontalGroup(
             topNavLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, topNavLayout.createSequentialGroup()
-                .addGap(0, 946, Short.MAX_VALUE)
-                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 510, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnclose, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
