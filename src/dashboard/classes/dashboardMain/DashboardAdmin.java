@@ -79,11 +79,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblBlocked = new javax.swing.JLabel();
         jLabel49 = new javax.swing.JLabel();
         blockBtn = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        blockBtn1 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        blockBtn2 = new javax.swing.JPanel();
+        lblBlock = new javax.swing.JLabel();
+        btnChangePassword = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
+        showName = new javax.swing.JTextField();
         assetContainer = new javax.swing.JPanel();
         lblAsset = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
@@ -408,7 +407,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        staffListTable.setAlignmentY(5.0F);
         staffListTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         staffListTable.setFillsViewportHeight(true);
         staffListTable.setGridColor(new java.awt.Color(255, 255, 255));
@@ -418,6 +416,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         staffListTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         staffListTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         staffListTable.setShowHorizontalLines(true);
+        staffListTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                staffListTableFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(staffListTable);
 
         javax.swing.GroupLayout stafListContainerLayout = new javax.swing.GroupLayout(stafListContainer);
@@ -512,52 +515,36 @@ public class DashboardAdmin extends javax.swing.JFrame {
         });
         blockBtn.setLayout(new java.awt.GridBagLayout());
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("BLOCK");
-        blockBtn.add(jLabel14, new java.awt.GridBagConstraints());
+        lblBlock.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblBlock.setForeground(new java.awt.Color(255, 255, 255));
+        lblBlock.setText("BLOCK/UNBLOCK");
+        blockBtn.add(lblBlock, new java.awt.GridBagConstraints());
 
-        blockBtn1.setBackground(new java.awt.Color(0, 200, 255));
-        blockBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
-        blockBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        blockBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnChangePassword.setBackground(new java.awt.Color(0, 200, 255));
+        btnChangePassword.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        btnChangePassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChangePassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseClicked(evt);
+                btnChangePasswordMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseEntered(evt);
+                btnChangePasswordMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseExited(evt);
+                btnChangePasswordMouseExited(evt);
             }
         });
-        blockBtn1.setLayout(new java.awt.GridBagLayout());
-
-        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("UNBLOCK");
-        blockBtn1.add(jLabel15, new java.awt.GridBagConstraints());
-
-        blockBtn2.setBackground(new java.awt.Color(0, 200, 255));
-        blockBtn2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
-        blockBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        blockBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                blockBtn2MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                blockBtn2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                blockBtn2MouseExited(evt);
-            }
-        });
-        blockBtn2.setLayout(new java.awt.GridBagLayout());
+        btnChangePassword.setLayout(new java.awt.GridBagLayout());
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("CHANGE PASSWORD");
-        blockBtn2.add(jLabel16, new java.awt.GridBagConstraints());
+        btnChangePassword.add(jLabel16, new java.awt.GridBagConstraints());
+
+        showName.setEditable(false);
+        showName.setBackground(new java.awt.Color(200, 250, 250));
+        showName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showName.setBorder(null);
 
         javax.swing.GroupLayout staffContainerLayout = new javax.swing.GroupLayout(staffContainer);
         staffContainer.setLayout(staffContainerLayout);
@@ -576,10 +563,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(blockBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(blockBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(blockBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(btnChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addComponent(showName))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         staffContainerLayout.setVerticalGroup(
@@ -591,10 +578,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(staffContainerLayout.createSequentialGroup()
-                        .addComponent(blockBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(blockBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(showName, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
                         .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
                 .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 352, Short.MAX_VALUE)
@@ -1179,9 +1166,18 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 String query = "select * from Staffs;";
                 Statement stmt = con.createStatement();
                 ResultSet rs = stmt.executeQuery(query);
-                while(rs.next()){
-                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("gender"),rs.getString("address"),rs.getString("joining"),rs.getBoolean("status")});
+                int countStaff=0,countBlocked=0;
+                for(int i=0;i<staffListTable.getRowCount();i++){
+                    tableModel.removeRow(i);
                 }
+                while(rs.next()){
+                   Boolean status = rs.getBoolean("status");
+                   if(!status)countBlocked++;
+                   countStaff++;
+                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("gender"),rs.getString("address"),rs.getString("joining"),status});
+                }
+                lblTotalStaffs.setText(Integer.toString(countStaff));
+                lblBlocked.setText(Integer.toString(countBlocked));
                 con.close();
             }catch(Exception e){
                 JOptionPane.showMessageDialog(contentContainer, e);
@@ -1287,20 +1283,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void navStaffsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navStaffsMouseClicked
         panelChange(staffContainer,navStaffs);
-        try{
-                DefaultTableModel tableModel = (DefaultTableModel) staffListTable.getModel();
-                Connection con = databaseConnection();
-                String query = "select * from Staffs;";
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery(query);
-                while(rs.next()){
-                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("gender"),rs.getString("address"),rs.getString("joining"),rs.getBoolean("status")});
-                }
-                con.close();
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(contentContainer, e);
-                //con.close();
-            }
+        getStaffList();
     }//GEN-LAST:event_navStaffsMouseClicked
 
     private void navAssetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseClicked
@@ -1316,7 +1299,33 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_navAboutMouseClicked
 
     private void blockBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseClicked
-        dispose();
+        String query,msg;
+        int selectedIndex = staffListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            String email = (String)staffListTable.getValueAt(selectedIndex, 1);
+            Boolean status = (Boolean)staffListTable.getValueAt(selectedIndex, 6);
+            int userChoosen = JOptionPane.showConfirmDialog(contentContainer, "Are You sure to BLOCK/UNBLOCK this user??");
+            if(userChoosen==0){
+                if(status){
+                    query = "update staffs set status=false where email = '"+email+"'";
+                    msg = "BLOCKED Successfully";
+                }else{
+                    query = "update staffs set status=true where email = '"+email+"'";
+                    msg = "UNBLOCKED Successfully";
+                }
+                try{
+                    Connection con = databaseConnection();
+                    Statement stmt = con.createStatement();
+                    stmt.executeUpdate(query);
+                    JOptionPane.showMessageDialog(contentContainer,email+" "+msg);
+                    getStaffList();
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(contentContainer,"Please select any row of the table.");
     }//GEN-LAST:event_blockBtnMouseClicked
 
     private void blockBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtnMouseEntered
@@ -1327,29 +1336,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
         blockBtn.setBackground(new Color(0,200,255));
     }//GEN-LAST:event_blockBtnMouseExited
 
-    private void blockBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseClicked
+    private void btnChangePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePasswordMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseClicked
+    }//GEN-LAST:event_btnChangePasswordMouseClicked
 
-    private void blockBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseEntered
+    private void btnChangePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePasswordMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseEntered
+    }//GEN-LAST:event_btnChangePasswordMouseEntered
 
-    private void blockBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseExited
+    private void btnChangePasswordMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePasswordMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseExited
+    }//GEN-LAST:event_btnChangePasswordMouseExited
 
-    private void blockBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn2MouseClicked
-
-    private void blockBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn2MouseEntered
-
-    private void blockBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn2MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn2MouseExited
+    private void staffListTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_staffListTableFocusGained
+        
+    }//GEN-LAST:event_staffListTableFocusGained
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1404,8 +1405,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel aboutContainer;
     private javax.swing.JPanel assetContainer;
     private javax.swing.JPanel blockBtn;
-    private javax.swing.JPanel blockBtn1;
-    private javax.swing.JPanel blockBtn2;
+    private javax.swing.JPanel btnChangePassword;
     private javax.swing.JButton btnclose;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel customerContainer;
@@ -1416,8 +1416,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
@@ -1453,6 +1451,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAsset;
+    private javax.swing.JLabel lblBlock;
     private javax.swing.JLabel lblBlocked;
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblDashborad;
@@ -1472,6 +1471,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
     private javax.swing.JPanel serviceContainer;
+    private javax.swing.JTextField showName;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JTable staffListTable;
