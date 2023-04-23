@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +27,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     Color onEnter,onExit,onClick;
     JPanel currentClickedButton;
     String userId;
-    public DashboardAdmin(String Id) {
+    JFrame previousForm;
+    public DashboardAdmin(String Id,JFrame f) {
         initComponents();
         currentClickedButton=navDashboard;
         onEnter = new Color(0,190,250);
@@ -36,6 +38,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         userId = Id;
         lblUsername.setText("Hi, "+Id);
         getStaffList();
+        previousForm = f;
     }
 
     /**
@@ -82,7 +85,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblBlock = new javax.swing.JLabel();
         btnChangePassword = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        showName = new javax.swing.JTextField();
+        changeStaffPasswordField = new javax.swing.JTextField();
         assetContainer = new javax.swing.JPanel();
         lblAsset = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
@@ -541,10 +544,12 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel16.setText("CHANGE PASSWORD");
         btnChangePassword.add(jLabel16, new java.awt.GridBagConstraints());
 
-        showName.setEditable(false);
-        showName.setBackground(new java.awt.Color(200, 250, 250));
-        showName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        showName.setBorder(null);
+        changeStaffPasswordField.setBackground(new java.awt.Color(200, 250, 250));
+        changeStaffPasswordField.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        changeStaffPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        changeStaffPasswordField.setText("Enter Password");
+        changeStaffPasswordField.setToolTipText("Visible when you select any staff detail.");
+        changeStaffPasswordField.setBorder(null);
 
         javax.swing.GroupLayout staffContainerLayout = new javax.swing.GroupLayout(staffContainer);
         staffContainer.setLayout(staffContainerLayout);
@@ -566,7 +571,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGroup(staffContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(blockBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                             .addComponent(btnChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
-                            .addComponent(showName))))
+                            .addComponent(changeStaffPasswordField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         staffContainerLayout.setVerticalGroup(
@@ -578,7 +583,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(staffContainerLayout.createSequentialGroup()
-                        .addComponent(showName, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(changeStaffPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -842,6 +847,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
         navLogout.setBackground(new java.awt.Color(0, 200, 255));
         navLogout.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         navLogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                navLogoutMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 navLogoutMouseEntered(evt);
             }
@@ -1076,7 +1084,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(menuContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1337,7 +1345,30 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_blockBtnMouseExited
 
     private void btnChangePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePasswordMouseClicked
-        // TODO add your handling code here:
+        int selectedIndex = staffListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            String newStaffPassword = changeStaffPasswordField.getText();
+            if(!newStaffPassword.equals("")&&!newStaffPassword.equals("Enter Password")){
+                String email = (String)staffListTable.getValueAt(selectedIndex, 1);
+                int userChoosen = JOptionPane.showConfirmDialog(contentContainer, "Are You sure to Change Password of this user??");
+                if(userChoosen==0){                
+                    try{
+                        Connection con = databaseConnection();
+                        Statement stmt = con.createStatement();
+                        String query="update staffs set pwd = '"+newStaffPassword+"' where email='"+email+"'";
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer,email+" Password is changed.");
+                        changeStaffPasswordField.setText("Enter Password");
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(contentContainer,e);
+                    }
+                }
+            }else{
+                JOptionPane.showMessageDialog(contentContainer,"Please enter new password for selected Staff.");
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(contentContainer,"Please select any row of the table.");
     }//GEN-LAST:event_btnChangePasswordMouseClicked
 
     private void btnChangePasswordMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePasswordMouseEntered
@@ -1351,6 +1382,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private void staffListTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_staffListTableFocusGained
         
     }//GEN-LAST:event_staffListTableFocusGained
+
+    private void navLogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navLogoutMouseClicked
+        int userChoosen = JOptionPane.showConfirmDialog(contentContainer, "Are You sure to LOGOUT??");
+        if(userChoosen==0){
+            dispose();
+            previousForm.setVisible(true);
+        }
+    }//GEN-LAST:event_navLogoutMouseClicked
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1369,37 +1408,37 @@ public class DashboardAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DashboardAdmin("deepanshuchauhan@gmail.com").setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new DashboardAdmin("deepanshuchauhan@gmail.com").setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
@@ -1407,6 +1446,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel blockBtn;
     private javax.swing.JPanel btnChangePassword;
     private javax.swing.JButton btnclose;
+    private javax.swing.JTextField changeStaffPasswordField;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel customerContainer;
     private javax.swing.JPanel dashboardContainer;
@@ -1471,7 +1511,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
     private javax.swing.JPanel serviceContainer;
-    private javax.swing.JTextField showName;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JTable staffListTable;
