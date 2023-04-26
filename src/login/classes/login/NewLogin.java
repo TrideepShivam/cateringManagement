@@ -680,13 +680,17 @@ public class NewLogin extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(contentContainer, "Please Enter a Valid Password.");
                     }
                 }else{
-                    query = "select pwd from Staffs where email = '"+username+"';";
+                    query = "select pwd,status from Staffs where email = '"+username+"';";
                     rs = stmt.executeQuery(query);
                     if(rs.next()){
                         if(rs.getString("pwd").equals(pwd)){
-                             DashboardStaff dashboard = new DashboardStaff(username,this);
-                             dashboard.setVisible(true);
-                             this.dispose();
+                            if(rs.getBoolean("status")){
+                                DashboardStaff dashboard = new DashboardStaff(username,this);
+                                dashboard.setVisible(true);
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(contentContainer, "You are blocked. Please Contact to admin.");
+                            }
                         }else{
                              JOptionPane.showMessageDialog(contentContainer, "Please Enter a Valid Password");
                         }
@@ -712,7 +716,7 @@ public class NewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_loginBtnMouseExited
 
     private void cancelBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseClicked
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_cancelBtnMouseClicked
 
     private void cancelBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnMouseEntered
@@ -751,7 +755,7 @@ public class NewLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_firstNameActionPerformed
 
     private void cancelBtnRegisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnRegisterMouseClicked
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_cancelBtnRegisterMouseClicked
 
     private void cancelBtnRegisterMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelBtnRegisterMouseEntered

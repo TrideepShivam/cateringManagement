@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -38,6 +39,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         userId = Id;
         lblUsername.setText("Hi, "+Id);
         getStaffList();
+        getPresentStaffs();
         previousForm = f;
     }
 
@@ -63,9 +65,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel44 = new javax.swing.JLabel();
+        lblPresentStaff = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        presentStaffTable = new javax.swing.JTable();
         serviceContainer = new javax.swing.JPanel();
         lblService = new javax.swing.JLabel();
         eventContainer = new javax.swing.JPanel();
@@ -241,9 +245,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel10.setBackground(new java.awt.Color(210, 255, 255));
 
-        jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        jLabel44.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel44.setText("0");
+        lblPresentStaff.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblPresentStaff.setForeground(new java.awt.Color(0, 204, 255));
+        lblPresentStaff.setText("0");
 
         jLabel45.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel45.setText("PRESENT STAFFS");
@@ -254,7 +258,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel44)
+                .addComponent(lblPresentStaff)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(85, Short.MAX_VALUE)
@@ -264,7 +268,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblPresentStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
@@ -272,15 +276,61 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(210, 255, 255));
 
+        presentStaffTable.setAutoCreateRowSorter(true);
+        presentStaffTable.setBackground(new java.awt.Color(204, 255, 255));
+        presentStaffTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        presentStaffTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        presentStaffTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "NAME", "EMAIL", "CONTACT", "JOINING"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        presentStaffTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        presentStaffTable.setFillsViewportHeight(true);
+        presentStaffTable.setGridColor(new java.awt.Color(255, 255, 255));
+        presentStaffTable.setRowHeight(40);
+        presentStaffTable.setRowMargin(10);
+        presentStaffTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        presentStaffTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        presentStaffTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        presentStaffTable.setShowHorizontalLines(true);
+        presentStaffTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                presentStaffTableFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(presentStaffTable);
+
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dashboardContainerLayout = new javax.swing.GroupLayout(dashboardContainer);
@@ -425,6 +475,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(staffListTable);
+        if (staffListTable.getColumnModel().getColumnCount() > 0) {
+            staffListTable.getColumnModel().getColumn(3).setHeaderValue("GENDER");
+            staffListTable.getColumnModel().getColumn(4).setHeaderValue("ADDRESS");
+            staffListTable.getColumnModel().getColumn(6).setHeaderValue("STATUS");
+        }
 
         javax.swing.GroupLayout stafListContainerLayout = new javax.swing.GroupLayout(stafListContainer);
         stafListContainer.setLayout(stafListContainerLayout);
@@ -589,7 +644,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(37, 37, 37)
-                .addComponent(stafListContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 352, Short.MAX_VALUE)
+                .addComponent(stafListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
         );
 
@@ -1166,6 +1221,31 @@ public class DashboardAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void getPresentStaffs(){
+        try{
+                SimpleDateFormat ft= new SimpleDateFormat("dd-MM-yyyy");
+                String today = ft.format(new java.util.Date());
+                DefaultTableModel tableModel = (DefaultTableModel) presentStaffTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select name,staffs.email,contact,joining from attendance join staffs on staffs.email = attendance.email where date='"+today+"';";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                int countPresent=0;
+                for(int i=0;i<presentStaffTable.getRowCount();i++){
+                    tableModel.removeRow(i);
+                }
+                while(rs.next()){
+                    countPresent++;
+                   tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("joining")});
+                }
+                lblPresentStaff.setText(Integer.toString(countPresent));
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+    }
+    
     
     private void getStaffList(){
             try{
@@ -1202,7 +1282,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         }
     }
     private void btncloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncloseActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btncloseActionPerformed
 
     private void btncloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncloseMouseEntered
@@ -1390,6 +1470,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
             previousForm.setVisible(true);
         }
     }//GEN-LAST:event_navLogoutMouseClicked
+
+    private void presentStaffTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_presentStaffTableFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_presentStaffTableFocusGained
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1472,7 +1556,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel49;
@@ -1489,6 +1572,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAsset;
     private javax.swing.JLabel lblBlock;
@@ -1496,6 +1580,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblDashborad;
     private javax.swing.JLabel lblEvent;
+    private javax.swing.JLabel lblPresentStaff;
     private javax.swing.JLabel lblService;
     private javax.swing.JLabel lblStaff;
     private javax.swing.JLabel lblTotalStaffs;
@@ -1510,6 +1595,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navLogout;
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
+    private javax.swing.JTable presentStaffTable;
     private javax.swing.JPanel serviceContainer;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;

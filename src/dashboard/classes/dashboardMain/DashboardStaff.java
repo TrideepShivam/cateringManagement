@@ -9,7 +9,9 @@ import java.awt.Container;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +27,7 @@ public class DashboardStaff extends javax.swing.JFrame {
     String userId;
     StringBuilder partialQuery;
     JFrame previousForm;
+    int totalAttandance;
     public DashboardStaff(String Id,JFrame f) {
         initComponents();
         previousForm = f;
@@ -49,6 +52,8 @@ public class DashboardStaff extends javax.swing.JFrame {
 
         jPanel13 = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
+        changePersonalBtn2 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         contentContainer = new javax.swing.JPanel();
         dashboardContainer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -67,6 +72,15 @@ public class DashboardStaff extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         attendanceContainer = new javax.swing.JPanel();
         lblService = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        staffAttendanceTable = new javax.swing.JTable();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel61 = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
+        changePersonalBtn1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        markPresentBtn = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
         profileContainer = new javax.swing.JPanel();
         lblEvent = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
@@ -147,6 +161,27 @@ public class DashboardStaff extends javax.swing.JFrame {
         jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jTextField3.setText("jTextField1");
         jTextField3.setBorder(null);
+
+        changePersonalBtn2.setBackground(new java.awt.Color(0, 200, 255));
+        changePersonalBtn2.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        changePersonalBtn2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePersonalBtn2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePersonalBtn2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                changePersonalBtn2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                changePersonalBtn2MouseExited(evt);
+            }
+        });
+        changePersonalBtn2.setLayout(new java.awt.GridBagLayout());
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Change");
+        changePersonalBtn2.add(jLabel16, new java.awt.GridBagConstraints());
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 0));
@@ -295,7 +330,7 @@ public class DashboardStaff extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 660, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,10 +351,10 @@ public class DashboardStaff extends javax.swing.JFrame {
                         .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(dashboardContainerLayout.createSequentialGroup()
                                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(81, 81, 81)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 90, Short.MAX_VALUE)
+                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
                         .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -350,20 +385,157 @@ public class DashboardStaff extends javax.swing.JFrame {
         lblService.setForeground(new java.awt.Color(0, 204, 255));
         lblService.setText("ATTENDANCE");
 
+        staffAttendanceTable.setAutoCreateRowSorter(true);
+        staffAttendanceTable.setBackground(new java.awt.Color(204, 255, 255));
+        staffAttendanceTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        staffAttendanceTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        staffAttendanceTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "DATE"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        staffAttendanceTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        staffAttendanceTable.setFillsViewportHeight(true);
+        staffAttendanceTable.setGridColor(new java.awt.Color(255, 255, 255));
+        staffAttendanceTable.setRowHeight(40);
+        staffAttendanceTable.setRowMargin(10);
+        staffAttendanceTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        staffAttendanceTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        staffAttendanceTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        staffAttendanceTable.setShowHorizontalLines(true);
+        staffAttendanceTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                staffAttendanceTableFocusGained(evt);
+            }
+        });
+        jScrollPane2.setViewportView(staffAttendanceTable);
+
+        jPanel19.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel61.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel61.setText("From");
+
+        jLabel62.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel62.setText("To");
+
+        changePersonalBtn1.setBackground(new java.awt.Color(0, 200, 255));
+        changePersonalBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        changePersonalBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        changePersonalBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                changePersonalBtn1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                changePersonalBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                changePersonalBtn1MouseExited(evt);
+            }
+        });
+        changePersonalBtn1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Change");
+        changePersonalBtn1.add(jLabel15, new java.awt.GridBagConstraints());
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel62)
+                    .addComponent(jLabel61))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel19Layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(changePersonalBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel61)
+                .addGap(121, 121, 121)
+                .addComponent(jLabel62)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addComponent(changePersonalBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
+        );
+
+        markPresentBtn.setBackground(new java.awt.Color(0, 200, 255));
+        markPresentBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        markPresentBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        markPresentBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                markPresentBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                markPresentBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                markPresentBtnMouseExited(evt);
+            }
+        });
+        markPresentBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Mark Today's Present");
+        markPresentBtn.add(jLabel17, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout attendanceContainerLayout = new javax.swing.GroupLayout(attendanceContainer);
         attendanceContainer.setLayout(attendanceContainerLayout);
         attendanceContainerLayout.setHorizontalGroup(
             attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(attendanceContainerLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblService)
-                .addGap(0, 933, Short.MAX_VALUE))
+                .addGroup(attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(attendanceContainerLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(lblService)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(attendanceContainerLayout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                        .addGroup(attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(markPresentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(44, 44, 44))
         );
         attendanceContainerLayout.setVerticalGroup(
             attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(attendanceContainerLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, attendanceContainerLayout.createSequentialGroup()
                 .addComponent(lblService, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(attendanceContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(attendanceContainerLayout.createSequentialGroup()
+                        .addComponent(markPresentBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                        .addGap(49, 49, 49)
+                        .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
+                .addGap(33, 33, 33))
         );
 
         contentContainer.add(attendanceContainer, "card2");
@@ -1124,7 +1296,7 @@ public class DashboardStaff extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncloseActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btncloseActionPerformed
 
     private void btncloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncloseMouseEntered
@@ -1181,9 +1353,28 @@ public class DashboardStaff extends javax.swing.JFrame {
 
     private void navAttendanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAttendanceMouseClicked
         panelChange(attendanceContainer,navAttendance);
+        getAttendanceDetail();
     }//GEN-LAST:event_navAttendanceMouseClicked
 
-    
+    private void getAttendanceDetail(){
+            try{
+                DefaultTableModel tableModel = (DefaultTableModel) staffAttendanceTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select * from attendance where email='"+userId+"';";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                for(int i=0;i<staffAttendanceTable.getRowCount();i++){
+                    tableModel.removeRow(i);
+                }
+                while(rs.next()){
+                   tableModel.addRow(new Object[]{rs.getInt("ID"),rs.getString("date")});
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+    }
     private Connection databaseConnection(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1338,6 +1529,68 @@ public class DashboardStaff extends javax.swing.JFrame {
             previousForm.setVisible(true);
         }
     }//GEN-LAST:event_navLogoutMouseClicked
+
+    private void staffAttendanceTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_staffAttendanceTableFocusGained
+
+    }//GEN-LAST:event_staffAttendanceTableFocusGained
+
+    private void changePersonalBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn1MouseClicked
+
+    private void changePersonalBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn1MouseEntered
+
+    private void changePersonalBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn1MouseExited
+
+    private void changePersonalBtn2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn2MouseClicked
+
+    private void changePersonalBtn2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn2MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn2MouseEntered
+
+    private void changePersonalBtn2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_changePersonalBtn2MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_changePersonalBtn2MouseExited
+
+    private void markPresentBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_markPresentBtnMouseClicked
+        int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to mark your attendance.");
+        if(choice==0){
+            try{
+                SimpleDateFormat ft= new SimpleDateFormat("dd-MM-yyyy");
+                String today = ft.format(new java.util.Date());
+                Connection con = databaseConnection();
+                String query = "select id from attendance where date='"+today+"' and email='"+userId+"'";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                if(!rs.next()){
+                    query="Insert into attendance(date,email) values('"+today+"','"+userId+"')";
+                    stmt.executeUpdate(query);
+                    JOptionPane.showMessageDialog(contentContainer, "Your attendance is marked Successfully");
+                    getAttendanceDetail();
+                }else{
+                    JOptionPane.showMessageDialog(contentContainer, "Your attendance is already marked.");
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+        }
+    }//GEN-LAST:event_markPresentBtnMouseClicked
+
+    private void markPresentBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_markPresentBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_markPresentBtnMouseEntered
+
+    private void markPresentBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_markPresentBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_markPresentBtnMouseExited
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -1399,6 +1652,8 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JTextField changeOldPasswordTxt;
     private javax.swing.JPanel changePasswordBtn;
     private javax.swing.JPanel changePersonalBtn;
+    private javax.swing.JPanel changePersonalBtn1;
+    private javax.swing.JPanel changePersonalBtn2;
     private javax.swing.JTextField changeReEnterTxt;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel dashboardContainer;
@@ -1408,6 +1663,9 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel35;
@@ -1435,6 +1693,8 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1444,10 +1704,12 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblDashborad;
@@ -1457,6 +1719,7 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JLabel lblService;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel logoContainer;
+    private javax.swing.JPanel markPresentBtn;
     private javax.swing.JPanel menuContainer;
     private javax.swing.JPanel navAbout;
     private javax.swing.JPanel navAttendance;
@@ -1471,6 +1734,7 @@ public class DashboardStaff extends javax.swing.JFrame {
     private javax.swing.JTextField showJoining;
     private javax.swing.JTextField showName;
     private javax.swing.JTextField showPassword;
+    private javax.swing.JTable staffAttendanceTable;
     private javax.swing.JPanel topNav;
     // End of variables declaration//GEN-END:variables
 }
