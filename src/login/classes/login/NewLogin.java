@@ -104,12 +104,12 @@ public class NewLogin extends javax.swing.JFrame {
         detailContinerLayout.setHorizontalGroup(
             detailContinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(detailContinerLayout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
-            .addGroup(detailContinerLayout.createSequentialGroup()
                 .addGap(94, 94, 94)
                 .addComponent(jLabel9)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(detailContinerLayout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
         );
         detailContinerLayout.setVerticalGroup(
             detailContinerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -613,9 +613,9 @@ public class NewLogin extends javax.swing.JFrame {
                         .addGroup(registerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(otherGender)
                             .addComponent(maleGender))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                         .addComponent(femaleGender)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(registerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelBtnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
