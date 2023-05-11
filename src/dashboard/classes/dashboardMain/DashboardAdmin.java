@@ -2385,6 +2385,30 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void deleteAssetsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteAssetsBtnMouseClicked
         // TODO add your handling code here:
+        int selectedIndex = assetListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            int id= (int)assetListTable.getValueAt(selectedIndex, 0);
+            int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Delete Selected Asset.");
+            if(choice==0){
+                try{
+                        Connection con = databaseConnection();
+                        String query="delete from `assets` where ID = "+id+";";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Asset Deleted Successfully.");  
+                        getAssetDetail();
+                        con.close();
+                        assetNameTxt.setText("");
+                        availabilityTxt.setText("");
+                        unitPriceTxt.setText("");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }
+        }else{
+            JOptionPane.showMessageDialog(contentContainer, "Please Select any row from table to Delete Asset.");
+            
+        }
     }//GEN-LAST:event_deleteAssetsBtnMouseClicked
 
     private void deleteAssetsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteAssetsBtnMouseEntered
@@ -2399,6 +2423,48 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void updateAssetsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtnMouseClicked
         // TODO add your handling code here:
+        int selectedIndex = assetListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            int id= (int)assetListTable.getValueAt(selectedIndex, 0);
+            String name = assetNameTxt.getText();
+            String available = availabilityTxt.getText();
+            String unitPrice = unitPriceTxt.getText();
+            if(name.equals("")&&available.equals("")&&unitPrice.equals("")){
+                JOptionPane.showMessageDialog(contentContainer,"Please fill all the field to Update Asset.");
+            }else{
+                try{
+                    int a = Integer.parseInt(available);
+                    int u = Integer.parseInt(unitPrice);
+                    
+                    
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Update Asset.");
+                    if(choice==0){
+                        Connection con = databaseConnection();
+                        String query="update `assets` set asset_name='"+name+"', available="+a+", unit_price="+u+" where ID = "+id+";";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Asset Updated Successfully.");  
+                        getAssetDetail();
+                        assetNameTxt.setText("");
+                        availabilityTxt.setText("");
+                        unitPriceTxt.setText("");
+                        con.close();
+                    }
+                    
+                    
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(contentContainer,"Either 'How much available' or 'unit price' data is not in number format.");
+                    availabilityTxt.setText("");
+                    unitPriceTxt.setText("");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(contentContainer, "Please Select any row from table to update Asset.");
+            
+        }
     }//GEN-LAST:event_updateAssetsBtnMouseClicked
 
     private void updateAssetsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtnMouseEntered
@@ -2435,6 +2501,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(contentContainer, "Asset Added Successfully.");  
                         getAssetDetail();
                         con.close();
+                        assetNameTxt.setText("");
+                        availabilityTxt.setText("");
+                        unitPriceTxt.setText("");
                     }
                     
                     
