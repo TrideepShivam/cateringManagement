@@ -52,6 +52,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        updateAssetsBtn1 = new javax.swing.JPanel();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        assetListTable1 = new javax.swing.JTable();
+        refreshAssetTable1 = new javax.swing.JLabel();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel80 = new javax.swing.JLabel();
+        assetNameTxt1 = new javax.swing.JTextField();
+        jLabel81 = new javax.swing.JLabel();
+        availabilityTxt1 = new javax.swing.JTextField();
+        jLabel82 = new javax.swing.JLabel();
+        unitPriceTxt1 = new javax.swing.JTextField();
+        jPanel28 = new javax.swing.JPanel();
+        lblTotalAsset1 = new javax.swing.JLabel();
+        jLabel83 = new javax.swing.JLabel();
         contentContainer = new javax.swing.JPanel();
         dashboardContainer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -153,6 +168,27 @@ public class DashboardAdmin extends javax.swing.JFrame {
         refreshAssetTable = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
         lblCustomer = new javax.swing.JLabel();
+        updateCustBtn = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        customerListTable = new javax.swing.JTable();
+        unselectAssetTable = new javax.swing.JLabel();
+        jPanel25 = new javax.swing.JPanel();
+        jLabel84 = new javax.swing.JLabel();
+        custNameTxt = new javax.swing.JTextField();
+        jLabel85 = new javax.swing.JLabel();
+        custContactTxt = new javax.swing.JTextField();
+        jLabel86 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        custAddressTxt = new javax.swing.JTextArea();
+        addAssetsBtn1 = new javax.swing.JPanel();
+        custEmailTxt = new javax.swing.JTextField();
+        jLabel88 = new javax.swing.JLabel();
+        jPanel29 = new javax.swing.JPanel();
+        lblTotalCustomer = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
+        addCustBtn = new javax.swing.JPanel();
+        jLabel29 = new javax.swing.JLabel();
         aboutContainer = new javax.swing.JPanel();
         lblAbout = new javax.swing.JLabel();
         logoContainer = new javax.swing.JPanel();
@@ -187,6 +223,182 @@ public class DashboardAdmin extends javax.swing.JFrame {
         topNav = new javax.swing.JPanel();
         btnclose = new javax.swing.JButton();
         lblUsername = new javax.swing.JLabel();
+
+        updateAssetsBtn1.setBackground(new java.awt.Color(0, 200, 255));
+        updateAssetsBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        updateAssetsBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateAssetsBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateAssetsBtn1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateAssetsBtn1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateAssetsBtn1MouseExited(evt);
+            }
+        });
+        updateAssetsBtn1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setText("UPDATE");
+        updateAssetsBtn1.add(jLabel25, new java.awt.GridBagConstraints());
+
+        assetListTable1.setBackground(new java.awt.Color(204, 255, 255));
+        assetListTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        assetListTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        assetListTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Asset Name", "Availability", "In Use", "Unit Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        assetListTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        assetListTable1.setFillsViewportHeight(true);
+        assetListTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        assetListTable1.setRowHeight(40);
+        assetListTable1.setRowMargin(10);
+        assetListTable1.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        assetListTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        assetListTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        assetListTable1.setShowHorizontalLines(true);
+        assetListTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                assetListTable1FocusGained(evt);
+            }
+        });
+        assetListTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assetListTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(assetListTable1);
+
+        refreshAssetTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        refreshAssetTable1.setForeground(new java.awt.Color(0, 200, 255));
+        refreshAssetTable1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        refreshAssetTable1.setText("Unselect");
+        refreshAssetTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refreshAssetTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshAssetTable1MouseClicked(evt);
+            }
+        });
+
+        jPanel24.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel80.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel80.setText("Asset Name");
+
+        assetNameTxt1.setBackground(new java.awt.Color(240, 255, 255));
+        assetNameTxt1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        assetNameTxt1.setToolTipText("Visible when you select any staff detail.");
+        assetNameTxt1.setBorder(null);
+
+        jLabel81.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel81.setText("How Much Available");
+
+        availabilityTxt1.setBackground(new java.awt.Color(240, 255, 255));
+        availabilityTxt1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        availabilityTxt1.setToolTipText("Visible when you select any staff detail.");
+        availabilityTxt1.setBorder(null);
+
+        jLabel82.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel82.setText("Unit Price");
+
+        unitPriceTxt1.setBackground(new java.awt.Color(240, 255, 255));
+        unitPriceTxt1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        unitPriceTxt1.setToolTipText("Visible when you select any staff detail.");
+        unitPriceTxt1.setBorder(null);
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel82)
+                            .addComponent(availabilityTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(unitPriceTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel80)
+                    .addComponent(jLabel81)
+                    .addComponent(assetNameTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assetNameTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel81)
+                .addGap(9, 9, 9)
+                .addComponent(availabilityTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel82)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(unitPriceTxt1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel28.setBackground(new java.awt.Color(210, 255, 255));
+
+        lblTotalAsset1.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
+        lblTotalAsset1.setForeground(new java.awt.Color(0, 204, 255));
+        lblTotalAsset1.setText("1");
+
+        jLabel83.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel83.setText("Total Assets");
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                .addGap(0, 38, Short.MAX_VALUE)
+                .addComponent(jLabel83, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotalAsset1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addComponent(lblTotalAsset1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel83)
+                .addGap(39, 39, 39))
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 0));
@@ -1441,20 +1653,281 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblCustomer.setForeground(new java.awt.Color(0, 204, 255));
         lblCustomer.setText("CUSTOMER");
 
+        updateCustBtn.setBackground(new java.awt.Color(0, 200, 255));
+        updateCustBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        updateCustBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateCustBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                updateCustBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                updateCustBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                updateCustBtnMouseExited(evt);
+            }
+        });
+        updateCustBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("UPDATE");
+        updateCustBtn.add(jLabel26, new java.awt.GridBagConstraints());
+
+        customerListTable.setBackground(new java.awt.Color(204, 255, 255));
+        customerListTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        customerListTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        customerListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Name", "Contact", "Email", "Address"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        customerListTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        customerListTable.setFillsViewportHeight(true);
+        customerListTable.setGridColor(new java.awt.Color(255, 255, 255));
+        customerListTable.setRowHeight(40);
+        customerListTable.setRowMargin(10);
+        customerListTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        customerListTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        customerListTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        customerListTable.setShowHorizontalLines(true);
+        customerListTable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                customerListTableFocusGained(evt);
+            }
+        });
+        customerListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                customerListTableMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(customerListTable);
+
+        unselectAssetTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        unselectAssetTable.setForeground(new java.awt.Color(0, 200, 255));
+        unselectAssetTable.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        unselectAssetTable.setText("Unselect");
+        unselectAssetTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        unselectAssetTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                unselectAssetTableMouseClicked(evt);
+            }
+        });
+
+        jPanel25.setBackground(new java.awt.Color(210, 255, 255));
+
+        jLabel84.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel84.setText("Name");
+
+        custNameTxt.setBackground(new java.awt.Color(240, 255, 255));
+        custNameTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        custNameTxt.setToolTipText("Visible when you select any staff detail.");
+        custNameTxt.setBorder(null);
+
+        jLabel85.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel85.setText("Contact");
+
+        custContactTxt.setBackground(new java.awt.Color(240, 255, 255));
+        custContactTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        custContactTxt.setToolTipText("Visible when you select any staff detail.");
+        custContactTxt.setBorder(null);
+
+        jLabel86.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel86.setText("Address");
+
+        custAddressTxt.setBackground(new java.awt.Color(240, 255, 255));
+        custAddressTxt.setColumns(20);
+        custAddressTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        custAddressTxt.setLineWrap(true);
+        custAddressTxt.setRows(5);
+        custAddressTxt.setBorder(null);
+        jScrollPane6.setViewportView(custAddressTxt);
+
+        addAssetsBtn1.setBackground(new java.awt.Color(0, 200, 255));
+        addAssetsBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        addAssetsBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addAssetsBtn1.setLayout(new java.awt.GridBagLayout());
+
+        custEmailTxt.setBackground(new java.awt.Color(240, 255, 255));
+        custEmailTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        custEmailTxt.setToolTipText("Visible when you select any staff detail.");
+        custEmailTxt.setBorder(null);
+
+        jLabel88.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel88.setText("Email");
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel84)
+                            .addComponent(jLabel85)
+                            .addComponent(custNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(custContactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addComponent(jLabel88)
+                        .addGap(206, 206, 206))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel25Layout.createSequentialGroup()
+                        .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel25Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addComponent(custEmailTxt))
+                            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel86)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34))))
+            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel25Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addAssetsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addComponent(jLabel84)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(custNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addComponent(jLabel88)
+                        .addGap(9, 9, 9)
+                        .addComponent(custEmailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel85)
+                    .addComponent(jLabel86))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(custContactTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+            .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel25Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(addAssetsBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jPanel29.setBackground(new java.awt.Color(210, 255, 255));
+
+        lblTotalCustomer.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
+        lblTotalCustomer.setForeground(new java.awt.Color(0, 204, 255));
+        lblTotalCustomer.setText("1");
+
+        jLabel87.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel87.setText("Customers");
+
+        javax.swing.GroupLayout jPanel29Layout = new javax.swing.GroupLayout(jPanel29);
+        jPanel29.setLayout(jPanel29Layout);
+        jPanel29Layout.setHorizontalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+                .addGap(0, 54, Short.MAX_VALUE)
+                .addComponent(jLabel87, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotalCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel29Layout.setVerticalGroup(
+            jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel29Layout.createSequentialGroup()
+                .addComponent(lblTotalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jLabel87)
+                .addGap(39, 39, 39))
+        );
+
+        addCustBtn.setBackground(new java.awt.Color(0, 200, 255));
+        addCustBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        addCustBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addCustBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addCustBtnMouseClicked(evt);
+            }
+        });
+        addCustBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("ADD");
+        addCustBtn.add(jLabel29, new java.awt.GridBagConstraints());
+
         javax.swing.GroupLayout customerContainerLayout = new javax.swing.GroupLayout(customerContainer);
         customerContainer.setLayout(customerContainerLayout);
         customerContainerLayout.setHorizontalGroup(
             customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerContainerLayout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(lblCustomer)
-                .addGap(0, 898, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(customerContainerLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(unselectAssetTable))
+                    .addComponent(updateCustBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                    .addComponent(addCustBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
+            .addGroup(customerContainerLayout.createSequentialGroup()
+                .addGroup(customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(customerContainerLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1041, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(customerContainerLayout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(lblCustomer)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         customerContainerLayout.setVerticalGroup(
             customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerContainerLayout.createSequentialGroup()
                 .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(699, Short.MAX_VALUE))
+                .addGap(11, 11, 11)
+                .addGroup(customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(customerContainerLayout.createSequentialGroup()
+                            .addComponent(addCustBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(18, 18, 18)
+                            .addComponent(updateCustBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(unselectAssetTable))
+                        .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         contentContainer.add(customerContainer, "card2");
@@ -2058,7 +2531,25 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 //con.close();
             }
     }
-    
+    private void getCustomerDetail(){
+            try{
+                DefaultTableModel tableModel = (DefaultTableModel) customerListTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select * from Customers;";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                for(int i=0;i<customerListTable.getRowCount();i++){
+                    tableModel.removeRow(i);
+                }
+                while(rs.next()){
+                   tableModel.addRow(new Object[]{rs.getInt("ID"),rs.getString("name"),rs.getString("Contact"),rs.getString("Email"),rs.getString("Address")});
+                }
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+    }
     private Connection databaseConnection(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2168,6 +2659,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void navCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseClicked
         panelChange(customerContainer,navCustomer);
+        getCustomerDetail();
     }//GEN-LAST:event_navCustomerMouseClicked
 
     private void navAboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAboutMouseClicked
@@ -2550,6 +3042,81 @@ public class DashboardAdmin extends javax.swing.JFrame {
         availabilityTxt.setText("");
         unitPriceTxt.setText("");
     }//GEN-LAST:event_refreshAssetTableMouseClicked
+
+    private void updateAssetsBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtn1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateAssetsBtn1MouseClicked
+
+    private void updateAssetsBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtn1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateAssetsBtn1MouseEntered
+
+    private void updateAssetsBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtn1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateAssetsBtn1MouseExited
+
+    private void assetListTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_assetListTable1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assetListTable1FocusGained
+
+    private void assetListTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assetListTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_assetListTable1MouseClicked
+
+    private void refreshAssetTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshAssetTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshAssetTable1MouseClicked
+
+    private void updateCustBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateCustBtnMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = customerListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            int id= (int)customerListTable.getValueAt(selectedIndex, 0);
+            JOptionPane.showMessageDialog(contentContainer, "yeah! we can update customer data id is: "+id);
+            
+        }else{
+            JOptionPane.showMessageDialog(contentContainer, "Please Select any row from table to update Asset.");
+            
+        }
+    }//GEN-LAST:event_updateCustBtnMouseClicked
+
+    private void updateCustBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateCustBtnMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateCustBtnMouseEntered
+
+    private void updateCustBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateCustBtnMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_updateCustBtnMouseExited
+
+    private void customerListTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_customerListTableFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerListTableFocusGained
+
+    private void customerListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerListTableMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = customerListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            custNameTxt.setText((String)customerListTable.getValueAt(selectedIndex, 1));
+            custContactTxt.setText((String) customerListTable.getValueAt(selectedIndex, 2));
+            custEmailTxt.setText((String) customerListTable.getValueAt(selectedIndex, 3));
+            custAddressTxt.setText((String) customerListTable.getValueAt(selectedIndex, 4));
+        }
+        
+    }//GEN-LAST:event_customerListTableMouseClicked
+
+    private void unselectAssetTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unselectAssetTableMouseClicked
+        // TODO add your handling code here:
+        customerListTable.clearSelection();
+        custNameTxt.setText("");
+        custContactTxt.setText("");
+        custEmailTxt.setText("");
+        custAddressTxt.setText("");
+    }//GEN-LAST:event_unselectAssetTableMouseClicked
+
+    private void addCustBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addCustBtnMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_addCustBtnMouseClicked
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -2603,16 +3170,26 @@ public class DashboardAdmin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
     private javax.swing.JPanel addAssetsBtn;
+    private javax.swing.JPanel addAssetsBtn1;
+    private javax.swing.JPanel addCustBtn;
     private javax.swing.JPanel assetContainer;
     private javax.swing.JTable assetListTable;
+    private javax.swing.JTable assetListTable1;
     private javax.swing.JTextField assetNameTxt;
+    private javax.swing.JTextField assetNameTxt1;
     private javax.swing.JTextField availabilityTxt;
+    private javax.swing.JTextField availabilityTxt1;
     private javax.swing.JPanel blockBtn;
     private javax.swing.JPanel btnChangePassword;
     private javax.swing.JButton btnclose;
     private javax.swing.JTextField changeStaffPasswordField;
     private javax.swing.JPanel contentContainer;
+    private javax.swing.JTextArea custAddressTxt;
+    private javax.swing.JTextField custContactTxt;
+    private javax.swing.JTextField custEmailTxt;
+    private javax.swing.JTextField custNameTxt;
     private javax.swing.JPanel customerContainer;
+    private javax.swing.JTable customerListTable;
     private javax.swing.JPanel dashboardContainer;
     private javax.swing.JPanel deleteAssetsBtn;
     private javax.swing.JPanel eventContainer;
@@ -2631,8 +3208,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2675,6 +3255,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel78;
     private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel88;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2688,13 +3277,20 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
+    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JLabel lblAbout;
     private javax.swing.JLabel lblAsset;
     private javax.swing.JLabel lblBlock;
@@ -2709,6 +3305,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblService;
     private javax.swing.JLabel lblStaff;
     private javax.swing.JLabel lblTotalAsset;
+    private javax.swing.JLabel lblTotalAsset1;
+    private javax.swing.JLabel lblTotalCustomer;
     private javax.swing.JLabel lblTotalStaffs;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel loginBtn;
@@ -2729,12 +3327,17 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navStaffs;
     private javax.swing.JTable presentStaffTable;
     private javax.swing.JLabel refreshAssetTable;
+    private javax.swing.JLabel refreshAssetTable1;
     private javax.swing.JPanel serviceContainer;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JTable staffListTable;
     private javax.swing.JPanel topNav;
     private javax.swing.JTextField unitPriceTxt;
+    private javax.swing.JTextField unitPriceTxt1;
+    private javax.swing.JLabel unselectAssetTable;
     private javax.swing.JPanel updateAssetsBtn;
+    private javax.swing.JPanel updateAssetsBtn1;
+    private javax.swing.JPanel updateCustBtn;
     // End of variables declaration//GEN-END:variables
 }

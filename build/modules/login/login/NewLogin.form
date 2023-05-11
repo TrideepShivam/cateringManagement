@@ -956,6 +956,9 @@
                   </Border>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="newPasswordFocusLost"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

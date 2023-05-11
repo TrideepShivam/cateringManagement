@@ -515,6 +515,11 @@ public class NewLogin extends javax.swing.JFrame {
         newPassword.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         newPassword.setForeground(new java.awt.Color(255, 255, 255));
         newPassword.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 3, 0, new java.awt.Color(255, 255, 255)));
+        newPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                newPasswordFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout registerContainerLayout = new javax.swing.GroupLayout(registerContainer);
         registerContainer.setLayout(registerContainerLayout);
@@ -905,6 +910,15 @@ public class NewLogin extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_emailFocusLost
+
+    private void newPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_newPasswordFocusLost
+        // TODO add your handling code here:
+        if(!newPassword.getText().equals(""));
+        if(newPassword.getText().length()<8){
+            JOptionPane.showMessageDialog(contentContainer,"Please enter at least 8 Character password.");
+            newPassword.setText("");
+        }
+    }//GEN-LAST:event_newPasswordFocusLost
 
     /**
      * @param args the command line arguments
