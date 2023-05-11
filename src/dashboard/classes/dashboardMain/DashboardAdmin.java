@@ -70,6 +70,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         presentStaffTable = new javax.swing.JTable();
+        lblDashborad1 = new javax.swing.JLabel();
         serviceContainer = new javax.swing.JPanel();
         lblService = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
@@ -129,26 +130,27 @@ public class DashboardAdmin extends javax.swing.JFrame {
         assetContainer = new javax.swing.JPanel();
         lblAsset = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        staffListTable1 = new javax.swing.JTable();
+        assetListTable = new javax.swing.JTable();
         jPanel23 = new javax.swing.JPanel();
-        lblBlocked1 = new javax.swing.JLabel();
+        lblInUse = new javax.swing.JLabel();
         jLabel72 = new javax.swing.JLabel();
-        blockBtn1 = new javax.swing.JPanel();
+        deleteAssetsBtn = new javax.swing.JPanel();
         lblBlock1 = new javax.swing.JLabel();
-        btnChangePassword1 = new javax.swing.JPanel();
+        updateAssetsBtn = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel22 = new javax.swing.JPanel();
-        jLabel71 = new javax.swing.JLabel();
-        changeStaffPasswordField1 = new javax.swing.JTextField();
         jLabel77 = new javax.swing.JLabel();
-        changeStaffPasswordField2 = new javax.swing.JTextField();
+        assetNameTxt = new javax.swing.JTextField();
         jLabel78 = new javax.swing.JLabel();
-        changeStaffPasswordField3 = new javax.swing.JTextField();
+        availabilityTxt = new javax.swing.JTextField();
         jLabel79 = new javax.swing.JLabel();
-        changeStaffPasswordField4 = new javax.swing.JTextField();
+        unitPriceTxt = new javax.swing.JTextField();
         jPanel27 = new javax.swing.JPanel();
-        lblBlocked5 = new javax.swing.JLabel();
+        lblTotalAsset = new javax.swing.JLabel();
         jLabel76 = new javax.swing.JLabel();
+        addAssetsBtn = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        refreshAssetTable = new javax.swing.JLabel();
         customerContainer = new javax.swing.JPanel();
         lblCustomer = new javax.swing.JLabel();
         aboutContainer = new javax.swing.JPanel();
@@ -326,7 +328,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addComponent(lblPresentStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 171, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -384,11 +386,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
+
+        lblDashborad1.setBackground(new java.awt.Color(204, 255, 255));
+        lblDashborad1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblDashborad1.setForeground(new java.awt.Color(0, 204, 255));
+        lblDashborad1.setText("Present Staff list");
 
         javax.swing.GroupLayout dashboardContainerLayout = new javax.swing.GroupLayout(dashboardContainer);
         dashboardContainer.setLayout(dashboardContainerLayout);
@@ -401,13 +405,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(lblDashborad)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(dashboardContainerLayout.createSequentialGroup()
-                        .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(dashboardContainerLayout.createSequentialGroup()
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 58, Short.MAX_VALUE)
+                        .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(dashboardContainerLayout.createSequentialGroup()
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(58, 58, 58)
+                                    .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblDashborad1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -422,11 +428,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(55, 55, 55)
+                .addGap(12, 12, 12)
+                .addComponent(lblDashborad1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         contentContainer.add(dashboardContainer, "card2");
@@ -856,7 +864,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(serviceContainerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -888,7 +896,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(eventContainerLayout.createSequentialGroup()
                 .addComponent(lblEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addContainerGap(699, Short.MAX_VALUE))
         );
 
         contentContainer.add(eventContainer, "card2");
@@ -1126,23 +1134,22 @@ public class DashboardAdmin extends javax.swing.JFrame {
         lblAsset.setForeground(new java.awt.Color(0, 204, 255));
         lblAsset.setText("ASSETS");
 
-        staffListTable1.setAutoCreateRowSorter(true);
-        staffListTable1.setBackground(new java.awt.Color(204, 255, 255));
-        staffListTable1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        staffListTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        staffListTable1.setModel(new javax.swing.table.DefaultTableModel(
+        assetListTable.setBackground(new java.awt.Color(204, 255, 255));
+        assetListTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        assetListTable.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        assetListTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "NAME", "EMAIL", "CONTACT", "GENDER", "ADDRESS", "JOINING", "STATUS"
+                "ID", "Asset Name", "Availability", "In Use", "Unit Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -1153,215 +1160,228 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        staffListTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        staffListTable1.setFillsViewportHeight(true);
-        staffListTable1.setGridColor(new java.awt.Color(255, 255, 255));
-        staffListTable1.setRowHeight(40);
-        staffListTable1.setRowMargin(10);
-        staffListTable1.setSelectionBackground(new java.awt.Color(0, 204, 255));
-        staffListTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
-        staffListTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        staffListTable1.setShowHorizontalLines(true);
-        staffListTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+        assetListTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        assetListTable.setFillsViewportHeight(true);
+        assetListTable.setGridColor(new java.awt.Color(255, 255, 255));
+        assetListTable.setRowHeight(40);
+        assetListTable.setRowMargin(10);
+        assetListTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
+        assetListTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        assetListTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        assetListTable.setShowHorizontalLines(true);
+        assetListTable.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                staffListTable1FocusGained(evt);
+                assetListTableFocusGained(evt);
             }
         });
-        jScrollPane3.setViewportView(staffListTable1);
-        if (staffListTable1.getColumnModel().getColumnCount() > 0) {
-            staffListTable1.getColumnModel().getColumn(3).setHeaderValue("GENDER");
-            staffListTable1.getColumnModel().getColumn(4).setHeaderValue("ADDRESS");
-            staffListTable1.getColumnModel().getColumn(6).setHeaderValue("STATUS");
-        }
+        assetListTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                assetListTableMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(assetListTable);
 
         jPanel23.setBackground(new java.awt.Color(210, 255, 255));
 
-        lblBlocked1.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        lblBlocked1.setForeground(new java.awt.Color(0, 204, 255));
-        lblBlocked1.setText("1");
+        lblInUse.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
+        lblInUse.setForeground(new java.awt.Color(0, 204, 255));
+        lblInUse.setText("1");
 
         jLabel72.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel72.setText("BLOCKED");
+        jLabel72.setText("In Use");
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
         jPanel23Layout.setHorizontalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel23Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lblBlocked1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jLabel72)
-                .addGap(21, 21, 21))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel72, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblInUse, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
-                .addComponent(lblBlocked1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                .addComponent(lblInUse, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel72)
-                .addGap(39, 39, 39))
+                .addGap(36, 36, 36))
         );
 
-        blockBtn1.setBackground(new java.awt.Color(0, 200, 255));
-        blockBtn1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
-        blockBtn1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        blockBtn1.addMouseListener(new java.awt.event.MouseAdapter() {
+        deleteAssetsBtn.setBackground(new java.awt.Color(0, 200, 255));
+        deleteAssetsBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        deleteAssetsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        deleteAssetsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseClicked(evt);
+                deleteAssetsBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseEntered(evt);
+                deleteAssetsBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                blockBtn1MouseExited(evt);
+                deleteAssetsBtnMouseExited(evt);
             }
         });
-        blockBtn1.setLayout(new java.awt.GridBagLayout());
+        deleteAssetsBtn.setLayout(new java.awt.GridBagLayout());
 
         lblBlock1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblBlock1.setForeground(new java.awt.Color(255, 255, 255));
-        lblBlock1.setText("BLOCK/UNBLOCK");
-        blockBtn1.add(lblBlock1, new java.awt.GridBagConstraints());
+        lblBlock1.setText("DELETE");
+        deleteAssetsBtn.add(lblBlock1, new java.awt.GridBagConstraints());
 
-        btnChangePassword1.setBackground(new java.awt.Color(0, 200, 255));
-        btnChangePassword1.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
-        btnChangePassword1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnChangePassword1.addMouseListener(new java.awt.event.MouseAdapter() {
+        updateAssetsBtn.setBackground(new java.awt.Color(0, 200, 255));
+        updateAssetsBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        updateAssetsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        updateAssetsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnChangePassword1MouseClicked(evt);
+                updateAssetsBtnMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnChangePassword1MouseEntered(evt);
+                updateAssetsBtnMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnChangePassword1MouseExited(evt);
+                updateAssetsBtnMouseExited(evt);
             }
         });
-        btnChangePassword1.setLayout(new java.awt.GridBagLayout());
+        updateAssetsBtn.setLayout(new java.awt.GridBagLayout());
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("CHANGE PASSWORD");
-        btnChangePassword1.add(jLabel23, new java.awt.GridBagConstraints());
+        jLabel23.setText("UPDATE");
+        updateAssetsBtn.add(jLabel23, new java.awt.GridBagConstraints());
 
         jPanel22.setBackground(new java.awt.Color(210, 255, 255));
 
-        jLabel71.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel71.setText("Name");
-
-        changeStaffPasswordField1.setBackground(new java.awt.Color(240, 255, 255));
-        changeStaffPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        changeStaffPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        changeStaffPasswordField1.setToolTipText("Visible when you select any staff detail.");
-        changeStaffPasswordField1.setBorder(null);
-
         jLabel77.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel77.setText("Name");
+        jLabel77.setText("Asset Name");
 
-        changeStaffPasswordField2.setBackground(new java.awt.Color(240, 255, 255));
-        changeStaffPasswordField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        changeStaffPasswordField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        changeStaffPasswordField2.setToolTipText("Visible when you select any staff detail.");
-        changeStaffPasswordField2.setBorder(null);
+        assetNameTxt.setBackground(new java.awt.Color(240, 255, 255));
+        assetNameTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        assetNameTxt.setToolTipText("Visible when you select any staff detail.");
+        assetNameTxt.setBorder(null);
 
         jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel78.setText("Name");
+        jLabel78.setText("How Much Available");
 
-        changeStaffPasswordField3.setBackground(new java.awt.Color(240, 255, 255));
-        changeStaffPasswordField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        changeStaffPasswordField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        changeStaffPasswordField3.setToolTipText("Visible when you select any staff detail.");
-        changeStaffPasswordField3.setBorder(null);
+        availabilityTxt.setBackground(new java.awt.Color(240, 255, 255));
+        availabilityTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        availabilityTxt.setToolTipText("Visible when you select any staff detail.");
+        availabilityTxt.setBorder(null);
 
         jLabel79.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel79.setText("Name");
+        jLabel79.setText("Unit Price");
 
-        changeStaffPasswordField4.setBackground(new java.awt.Color(240, 255, 255));
-        changeStaffPasswordField4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        changeStaffPasswordField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        changeStaffPasswordField4.setToolTipText("Visible when you select any staff detail.");
-        changeStaffPasswordField4.setBorder(null);
+        unitPriceTxt.setBackground(new java.awt.Color(240, 255, 255));
+        unitPriceTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        unitPriceTxt.setToolTipText("Visible when you select any staff detail.");
+        unitPriceTxt.setBorder(null);
 
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel79)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                        .addComponent(changeStaffPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel79)
+                            .addComponent(availabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel78)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(changeStaffPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel77)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(changeStaffPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                        .addComponent(jLabel71)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(changeStaffPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                        .addContainerGap()
+                        .addComponent(unitPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel77)
+                    .addComponent(jLabel78)
+                    .addComponent(assetNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel22Layout.setVerticalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel71)
-                    .addComponent(changeStaffPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel77)
-                    .addComponent(changeStaffPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel78)
-                    .addComponent(changeStaffPasswordField3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel79)
-                    .addComponent(changeStaffPasswordField4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel77)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(assetNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel78)
+                .addGap(9, 9, 9)
+                .addComponent(availabilityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel79)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(unitPriceTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel27.setBackground(new java.awt.Color(210, 255, 255));
 
-        lblBlocked5.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        lblBlocked5.setForeground(new java.awt.Color(0, 204, 255));
-        lblBlocked5.setText("1");
+        lblTotalAsset.setFont(new java.awt.Font("Segoe UI", 1, 72)); // NOI18N
+        lblTotalAsset.setForeground(new java.awt.Color(0, 204, 255));
+        lblTotalAsset.setText("1");
 
         jLabel76.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel76.setText("BLOCKED");
+        jLabel76.setText("Total Assets");
 
         javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
         jPanel27.setLayout(jPanel27Layout);
         jPanel27Layout.setHorizontalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(lblBlocked5)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
-                .addContainerGap(78, Short.MAX_VALUE)
-                .addComponent(jLabel76)
-                .addGap(21, 21, 21))
+                .addGap(0, 38, Short.MAX_VALUE)
+                .addComponent(jLabel76, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTotalAsset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel27Layout.setVerticalGroup(
             jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel27Layout.createSequentialGroup()
-                .addComponent(lblBlocked5, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTotalAsset, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel76)
                 .addGap(39, 39, 39))
         );
+
+        addAssetsBtn.setBackground(new java.awt.Color(0, 200, 255));
+        addAssetsBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 255, 255)));
+        addAssetsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addAssetsBtn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addAssetsBtnMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addAssetsBtnMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addAssetsBtnMouseExited(evt);
+            }
+        });
+        addAssetsBtn.setLayout(new java.awt.GridBagLayout());
+
+        jLabel24.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel24.setText("ADD");
+        addAssetsBtn.add(jLabel24, new java.awt.GridBagConstraints());
+
+        refreshAssetTable.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        refreshAssetTable.setForeground(new java.awt.Color(0, 200, 255));
+        refreshAssetTable.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        refreshAssetTable.setText("Unselect");
+        refreshAssetTable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        refreshAssetTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshAssetTableMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout assetContainerLayout = new javax.swing.GroupLayout(assetContainer);
         assetContainer.setLayout(assetContainerLayout);
@@ -1373,18 +1393,21 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assetContainerLayout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1041, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(assetContainerLayout.createSequentialGroup()
-                        .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(blockBtn1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChangePassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1041, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(assetContainerLayout.createSequentialGroup()
+                            .addComponent(jPanel27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(58, 58, 58)
+                            .addComponent(jPanel22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(53, 53, 53)
+                            .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(deleteAssetsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(updateAssetsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addAssetsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(refreshAssetTable, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(34, 34, 34))
         );
         assetContainerLayout.setVerticalGroup(
@@ -1392,16 +1415,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
             .addGroup(assetContainerLayout.createSequentialGroup()
                 .addComponent(lblAsset, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(assetContainerLayout.createSequentialGroup()
-                        .addComponent(btnChangePassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(blockBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(assetContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(addAssetsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(updateAssetsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(deleteAssetsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(refreshAssetTable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -1428,7 +1454,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             customerContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(customerContainerLayout.createSequentialGroup()
                 .addComponent(lblCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addContainerGap(699, Short.MAX_VALUE))
         );
 
         contentContainer.add(customerContainer, "card2");
@@ -1453,7 +1479,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             aboutContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutContainerLayout.createSequentialGroup()
                 .addComponent(lblAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(680, Short.MAX_VALUE))
+                .addContainerGap(699, Short.MAX_VALUE))
         );
 
         contentContainer.add(aboutContainer, "card2");
@@ -1689,7 +1715,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("EVENT");
+        jLabel31.setText("EVENTS");
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/event.png"))); // NOI18N
 
@@ -1776,7 +1802,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel27.setText("CUSTOMER");
+        jLabel27.setText("CUSTOMERS");
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/dashboardMain/communication.png"))); // NOI18N
 
@@ -1950,7 +1976,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         getAccessibleContext().setAccessibleName("dashboard");
 
-        setSize(new java.awt.Dimension(1389, 761));
+        setSize(new java.awt.Dimension(1389, 783));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2005,6 +2031,34 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 //con.close();
             }
     }
+    
+    private void getAssetDetail(){
+        int totalAsset=0,inUseAsset=0;
+            try{
+                DefaultTableModel tableModel = (DefaultTableModel) assetListTable.getModel();
+                Connection con = databaseConnection();
+                String query = "select * from Assets;";
+                Statement stmt = con.createStatement();
+                ResultSet rs = stmt.executeQuery(query);
+                for(int i=0;i<assetListTable.getRowCount();i++){
+                    tableModel.removeRow(i);
+                }
+                while(rs.next()){
+                    int available = rs.getInt("available");
+                    int inUse = rs.getInt("in_use");
+                   tableModel.addRow(new Object[]{rs.getInt("ID"),rs.getString("asset_name"),available,inUse,rs.getInt("unit_price")});
+                   totalAsset+=available;
+                   inUseAsset+=inUse;
+                }
+                lblTotalAsset.setText(Integer.toString(totalAsset));
+                lblInUse.setText(Integer.toString(inUseAsset));
+                con.close();
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(contentContainer, e);
+                //con.close();
+            }
+    }
+    
     private Connection databaseConnection(){
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2109,6 +2163,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void navAssetsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navAssetsMouseClicked
         panelChange(assetContainer,navAssets);
+        getAssetDetail();
     }//GEN-LAST:event_navAssetsMouseClicked
 
     private void navCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navCustomerMouseClicked
@@ -2324,33 +2379,108 @@ public class DashboardAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginBtn7MouseExited
 
-    private void staffListTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_staffListTable1FocusGained
+    private void assetListTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_assetListTableFocusGained
         // TODO add your handling code here:
-    }//GEN-LAST:event_staffListTable1FocusGained
+    }//GEN-LAST:event_assetListTableFocusGained
 
-    private void blockBtn1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseClicked
+    private void deleteAssetsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteAssetsBtnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseClicked
+    }//GEN-LAST:event_deleteAssetsBtnMouseClicked
 
-    private void blockBtn1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseEntered
+    private void deleteAssetsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteAssetsBtnMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseEntered
+        deleteAssetsBtn.setBackground(onEnter);
+    }//GEN-LAST:event_deleteAssetsBtnMouseEntered
 
-    private void blockBtn1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blockBtn1MouseExited
+    private void deleteAssetsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_deleteAssetsBtnMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_blockBtn1MouseExited
+        deleteAssetsBtn.setBackground(onExit);
+    }//GEN-LAST:event_deleteAssetsBtnMouseExited
 
-    private void btnChangePassword1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePassword1MouseClicked
+    private void updateAssetsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtnMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnChangePassword1MouseClicked
+    }//GEN-LAST:event_updateAssetsBtnMouseClicked
 
-    private void btnChangePassword1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePassword1MouseEntered
+    private void updateAssetsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtnMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnChangePassword1MouseEntered
+        updateAssetsBtn.setBackground(onEnter);
+    }//GEN-LAST:event_updateAssetsBtnMouseEntered
 
-    private void btnChangePassword1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChangePassword1MouseExited
+    private void updateAssetsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateAssetsBtnMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnChangePassword1MouseExited
+        updateAssetsBtn.setBackground(onExit);
+    }//GEN-LAST:event_updateAssetsBtnMouseExited
+
+    private void addAssetsBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAssetsBtnMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = assetListTable.getSelectedRow();
+        if(selectedIndex<0){
+            String name = assetNameTxt.getText();
+            String available = availabilityTxt.getText();
+            String unitPrice = unitPriceTxt.getText();
+            if(name.equals("")&&available.equals("")&&unitPrice.equals("")){
+                JOptionPane.showMessageDialog(contentContainer,"Please fill all the field to ADD new Asset.");
+            }else{
+                try{
+                    int a = Integer.parseInt(available);
+                    int u = Integer.parseInt(unitPrice);
+                    
+                    
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Add this new Asset.");
+                    if(choice==0){
+                        Connection con = databaseConnection();
+                        String query="INSERT INTO `assets` (`asset_name`, `available`, `unit_price`) VALUES ('"+name+"',"+a+","+u+");";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Asset Added Successfully.");  
+                        getAssetDetail();
+                        con.close();
+                    }
+                    
+                    
+                }catch(NumberFormatException e){
+                    JOptionPane.showMessageDialog(contentContainer,"Either 'How much available' or 'unit price' data is not in number format.");
+                    availabilityTxt.setText("");
+                    unitPriceTxt.setText("");
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(contentContainer, "Please Unselect Table Row to add New Asset.");
+            
+        }
+    }//GEN-LAST:event_addAssetsBtnMouseClicked
+
+    private void addAssetsBtnMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAssetsBtnMouseEntered
+        // TODO add your handling code here:
+        addAssetsBtn.setBackground(onEnter);
+    }//GEN-LAST:event_addAssetsBtnMouseEntered
+
+    private void addAssetsBtnMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addAssetsBtnMouseExited
+        // TODO add your handling code here:
+        addAssetsBtn.setBackground(onExit);
+    }//GEN-LAST:event_addAssetsBtnMouseExited
+
+    private void assetListTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assetListTableMouseClicked
+        // TODO add your handling code here:
+        int selectedIndex = assetListTable.getSelectedRow();
+        if(selectedIndex>=0){
+            assetNameTxt.setText((String)assetListTable.getValueAt(selectedIndex, 1));
+            availabilityTxt.setText(Integer.toString((int) assetListTable.getValueAt(selectedIndex, 2)));
+            unitPriceTxt.setText(Integer.toString((int) assetListTable.getValueAt(selectedIndex, 4)));
+        }
+        
+    }//GEN-LAST:event_assetListTableMouseClicked
+
+    private void refreshAssetTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshAssetTableMouseClicked
+        // TODO add your handling code here:
+        assetListTable.clearSelection();
+        assetNameTxt.setText("");
+        availabilityTxt.setText("");
+        unitPriceTxt.setText("");
+    }//GEN-LAST:event_refreshAssetTableMouseClicked
     public void panelChange(Container content,JPanel btn){
        contentContainer.removeAll();
        contentContainer.add(content);
@@ -2369,54 +2499,53 @@ public class DashboardAdmin extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new DashboardAdmin("deepanshuchauhan@gmail.com").setVisible(true);
-//            }
-//        });
-//    }
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(DashboardAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new DashboardAdmin("deepanshuchauhan@gmail.com",new JFrame()).setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel aboutContainer;
+    private javax.swing.JPanel addAssetsBtn;
     private javax.swing.JPanel assetContainer;
+    private javax.swing.JTable assetListTable;
+    private javax.swing.JTextField assetNameTxt;
+    private javax.swing.JTextField availabilityTxt;
     private javax.swing.JPanel blockBtn;
-    private javax.swing.JPanel blockBtn1;
     private javax.swing.JPanel btnChangePassword;
-    private javax.swing.JPanel btnChangePassword1;
     private javax.swing.JButton btnclose;
     private javax.swing.JTextField changeStaffPasswordField;
-    private javax.swing.JTextField changeStaffPasswordField1;
-    private javax.swing.JTextField changeStaffPasswordField2;
-    private javax.swing.JTextField changeStaffPasswordField3;
-    private javax.swing.JTextField changeStaffPasswordField4;
     private javax.swing.JPanel contentContainer;
     private javax.swing.JPanel customerContainer;
     private javax.swing.JPanel dashboardContainer;
+    private javax.swing.JPanel deleteAssetsBtn;
     private javax.swing.JPanel eventContainer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2432,6 +2561,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
@@ -2470,7 +2600,6 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel69;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel70;
-    private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel77;
@@ -2502,14 +2631,15 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblBlock;
     private javax.swing.JLabel lblBlock1;
     private javax.swing.JLabel lblBlocked;
-    private javax.swing.JLabel lblBlocked1;
-    private javax.swing.JLabel lblBlocked5;
     private javax.swing.JLabel lblCustomer;
     private javax.swing.JLabel lblDashborad;
+    private javax.swing.JLabel lblDashborad1;
     private javax.swing.JLabel lblEvent;
+    private javax.swing.JLabel lblInUse;
     private javax.swing.JLabel lblPresentStaff;
     private javax.swing.JLabel lblService;
     private javax.swing.JLabel lblStaff;
+    private javax.swing.JLabel lblTotalAsset;
     private javax.swing.JLabel lblTotalStaffs;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel loginBtn;
@@ -2529,11 +2659,13 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel navServices;
     private javax.swing.JPanel navStaffs;
     private javax.swing.JTable presentStaffTable;
+    private javax.swing.JLabel refreshAssetTable;
     private javax.swing.JPanel serviceContainer;
     private javax.swing.JPanel stafListContainer;
     private javax.swing.JPanel staffContainer;
     private javax.swing.JTable staffListTable;
-    private javax.swing.JTable staffListTable1;
     private javax.swing.JPanel topNav;
+    private javax.swing.JTextField unitPriceTxt;
+    private javax.swing.JPanel updateAssetsBtn;
     // End of variables declaration//GEN-END:variables
 }
