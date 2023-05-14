@@ -382,7 +382,7 @@ public class DashboardStaff extends javax.swing.JFrame {
         staffAttendanceTable.setSelectionBackground(new java.awt.Color(0, 204, 255));
         staffAttendanceTable.setSelectionForeground(new java.awt.Color(255, 255, 255));
         staffAttendanceTable.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        staffAttendanceTable.setShowHorizontalLines(true);
+        staffAttendanceTable.setShowGrid(false);
         staffAttendanceTable.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 staffAttendanceTableFocusGained(evt);
