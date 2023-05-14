@@ -3386,8 +3386,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 try{
                         Connection con = databaseConnection();
                         String query="delete from `assets` where ID = "+id+";";
+                        String alterQuery = "ALTER TABLE `event_assets` DROP `"+assetNameTxt.getText()+"`;";
                         Statement stmt=con.createStatement();
                         stmt.executeUpdate(query);
+                        stmt.executeUpdate(alterQuery);
                         JOptionPane.showMessageDialog(contentContainer, "Asset Deleted Successfully.");  
                         getAssetDetail();
                         con.close();
@@ -3434,8 +3436,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     if(choice==0){
                         Connection con = databaseConnection();
                         String query="update `assets` set asset_name='"+name+"', available="+a+", unit_price="+u+" where ID = "+id+";";
+                        String alterQuery ="ALTER TABLE `event_assets` CHANGE `"+name+"` `Beverage Oven` INT(5) NOT NULL DEFAULT '0';";
                         Statement stmt=con.createStatement();
                         stmt.executeUpdate(query);
+                        stmt.executeUpdate(alterQuery);
                         JOptionPane.showMessageDialog(contentContainer, "Asset Updated Successfully.");  
                         getAssetDetail();
                         assetNameTxt.setText("");
@@ -3489,8 +3493,10 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     if(choice==0){
                         Connection con = databaseConnection();
                         String query="INSERT INTO `assets` (`asset_name`, `available`, `unit_price`) VALUES ('"+name+"',"+a+","+u+");";
+                        String alterQuery = "ALTER TABLE `event_assets` ADD `"+name+"` INT(5) NOT NULL DEFAULT '0'";
                         Statement stmt=con.createStatement();
                         stmt.executeUpdate(query);
+                        stmt.executeUpdate(alterQuery);
                         JOptionPane.showMessageDialog(contentContainer, "Asset Added Successfully.");  
                         getAssetDetail();
                         con.close();
@@ -3790,6 +3796,62 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void Submit_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Submit_ButtonMouseClicked
         // TODO add your handling code here:
+        String customerName=customer_name.getText();
+        String customerContact=customer_contact.getText();
+        String customerEmail=customer_email.getText();
+        String customerAddress=customer_address.getText();
+        String eventName=event_name.getText();
+        String eventVenue=event_venue.getText();
+        String eventStart=event_start.getText();
+        String eventEnd=event_end.getText();
+        String eventPerson=event_person.getText();
+        String eventServCount=event_servecount.getText();
+        if(customerName.equals("")&&customerContact.equals("")&&customerEmail.equals("")&&customerAddress.equals("")&&eventName.equals("")&&eventVenue.equals("")&&eventStart.equals("")&&eventEnd.equals("")&&eventPerson.equals("")&&eventServCount.equals("")&&asset_table.getRowCount()<=0){
+            JOptionPane.showMessageDialog(this,"Please Enter all field to Submit.");
+        }else{
+            int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Submit Details.");
+            if(choice==0){
+                int cust_id=0,bill_id=0,asset_id=0,totalAmount=0;
+                    try{                    
+                        Connection con = databaseConnection();
+                        String query="INSERT INTO `customers` (`name`, `contact`, `email`, `address`) VALUES ('"+customerName+"','"+customerContact+"','"+customerEmail+"','"+customerAddress+"');";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        String custidquery="select ID from customers order by ID desc limit 1;";
+                        ResultSet rs = stmt.executeQuery(custidquery);
+                        if(rs.next())
+                            cust_id=(int)rs.getInt("ID");
+                        StringBuilder attributeQuery = new StringBuilder("");
+                        StringBuilder valueQuery = new StringBuilder("");
+                        for(int i=0;i<asset_table.getRowCount();i++){
+                            attributeQuery.append("`"+asset_table.getValueAt(i, 0)+"`,");
+                            valueQuery.append(asset_table.getValueAt(i, 1)+",");
+                            int amount= (int) asset_table.getValueAt(i,3);
+                            totalAmount+=amount;
+                        }
+                        String eventAssetQuery = "insert into event_assets ("+attributeQuery.substring(0, attributeQuery.length()-1)+") values("+valueQuery.substring(0, valueQuery.length()-1)+");";
+                        stmt.executeUpdate(eventAssetQuery);
+                        String eventassetidquery="select ID from event_assets order by ID desc limit 1;";
+                        rs = stmt.executeQuery(eventassetidquery);
+                        if(rs.next())
+                            asset_id=(int)rs.getInt("ID");
+                        totalAmount+=Integer.parseInt(eventPerson)*20;
+                        String billQuery = "insert into bill (total,pending) values ("+totalAmount+","+totalAmount+");";
+                        stmt.executeUpdate(billQuery);
+                        String billidquery = "select ID from bill order by id desc limit 1;";
+                        rs = stmt.executeQuery(billidquery);
+                        if(rs.next())
+                            bill_id = (int)rs.getInt("ID");
+                        String eventQuery = "Insert into events (name,venue,start,end,person,Service_count,Cust_id,Bill_id,Asset_id) values('"+eventName+"','"+eventVenue+"','"+eventStart+"','"+eventEnd+"',"+Integer.valueOf(eventPerson)+","+Integer.valueOf(eventServCount)+","+cust_id+","+bill_id+","+asset_id+");";
+                        stmt.executeUpdate(eventQuery);
+                        JOptionPane.showMessageDialog(contentContainer,"Event Created Successfully");
+                        panelChange(eventContainer,navEvent);
+                        con.close();  
+                    }catch(Exception e){
+                        JOptionPane.showMessageDialog(contentContainer,e);
+                    }
+            }
+        }
     }//GEN-LAST:event_Submit_ButtonMouseClicked
 
     private void Submit_ButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Submit_ButtonMouseEntered
@@ -3860,7 +3922,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }
     private void getEventForm(int personCount){
         panelChange(service_panel,navServices);
-        event_servecount.setText(Integer.toString(personCount));
+        event_person.setText(Integer.toString(personCount));
         DefaultTableModel tableModel = (DefaultTableModel) asset_table.getModel();
         for(int i=0;i<asset_table.getRowCount();i++){
             tableModel.removeRow(i);
