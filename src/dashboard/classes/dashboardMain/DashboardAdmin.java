@@ -10,9 +10,9 @@ import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -42,8 +42,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
         navDashboard.setBackground(onClick);
         userId = Id;
         lblUsername.setText("Hi, "+Id);
-        getStaffList();
-        getPresentStaffs();
+        getDashboardDetails();
+        
         previousForm = f;
         prevLbl = allEvent;
     }
@@ -75,14 +75,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
         contentContainer = new javax.swing.JPanel();
         dashboardContainer = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel37 = new javax.swing.JLabel();
+        lblEventDone = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         lblDashborad = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel40 = new javax.swing.JLabel();
+        lblEventRunning = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel42 = new javax.swing.JLabel();
+        lblEventPending = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         lblPresentStaff = new javax.swing.JLabel();
@@ -494,9 +494,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(210, 255, 255));
 
-        jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel37.setText("0");
+        lblEventDone.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblEventDone.setForeground(new java.awt.Color(0, 204, 255));
+        lblEventDone.setText("0");
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel38.setText("EVENT DONE");
@@ -507,7 +507,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel37)
+                .addComponent(lblEventDone)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(112, Short.MAX_VALUE)
@@ -517,7 +517,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEventDone, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jLabel38)
                 .addGap(33, 33, 33))
@@ -530,9 +530,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(210, 255, 255));
 
-        jLabel40.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        jLabel40.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel40.setText("0");
+        lblEventRunning.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblEventRunning.setForeground(new java.awt.Color(0, 204, 255));
+        lblEventRunning.setText("0");
 
         jLabel41.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel41.setText("HAPPENINGS");
@@ -543,7 +543,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jLabel40)
+                .addComponent(lblEventRunning)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(115, Short.MAX_VALUE)
@@ -553,7 +553,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEventRunning, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel41)
                 .addGap(30, 30, 30))
@@ -561,9 +561,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(210, 255, 255));
 
-        jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(0, 204, 255));
-        jLabel42.setText("0");
+        lblEventPending.setFont(new java.awt.Font("Segoe UI", 1, 120)); // NOI18N
+        lblEventPending.setForeground(new java.awt.Color(0, 204, 255));
+        lblEventPending.setText("0");
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel43.setText("PENDINGS");
@@ -574,7 +574,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel42)
+                .addComponent(lblEventPending)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
@@ -585,7 +585,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblEventPending, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
@@ -722,11 +722,11 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(12, 12, 12)
                 .addComponent(lblDashborad1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(dashboardContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         contentContainer.add(dashboardContainer, "card2");
@@ -1161,7 +1161,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                             .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
                         .addComponent(jPanel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(serviceContainerLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -1279,7 +1279,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         lblStaffName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblStaffName.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        lblStaffName.setText("Name");
+        lblStaffName.setText("Total Assigned");
 
         staff_selection.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         staff_selection.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -1357,6 +1357,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         staff_count.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         staff_count.setForeground(new java.awt.Color(255, 0, 51));
+        staff_count.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         staff_count.setText("0");
 
         lblEvent1.setBackground(new java.awt.Color(204, 255, 255));
@@ -1627,12 +1628,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
                                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, eventContainerLayout.createSequentialGroup()
                                     .addGroup(eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(unit_price2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                                        .addComponent(staff_count, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lblStaffName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(staff_selection, 0, 162, Short.MAX_VALUE))
+                                        .addGroup(eventContainerLayout.createSequentialGroup()
+                                            .addComponent(unit_price2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(staff_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(eventContainerLayout.createSequentialGroup()
+                                            .addComponent(lblStaffName)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(staff_count, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(assign_staff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1654,7 +1657,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                     .addGroup(eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel26, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel30, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(0, 7, Short.MAX_VALUE)
+                .addGap(0, 10, Short.MAX_VALUE)
                 .addGroup(eventContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pendingEvent)
                     .addComponent(allEvent)
@@ -1905,7 +1908,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(btnChangePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
                         .addComponent(blockBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(37, 37, 37)
+                .addGap(40, 40, 40)
                 .addComponent(stafListContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
         );
@@ -2213,7 +2216,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(refreshAssetTable)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                 .addGap(25, 25, 25))
         );
 
@@ -2505,7 +2508,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(jPanel25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         contentContainer.add(customerContainer, "card2");
@@ -2530,7 +2533,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
             aboutContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(aboutContainerLayout.createSequentialGroup()
                 .addComponent(lblAbout, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(744, Short.MAX_VALUE))
+                .addContainerGap(747, Short.MAX_VALUE))
         );
 
         contentContainer.add(aboutContainer, "card2");
@@ -3020,7 +3023,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addGroup(service_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(Submit_Button, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
                     .addComponent(Reset_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         contentContainer.add(service_panel, "card9");
@@ -3396,7 +3399,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
                 .addComponent(navAssets, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(navCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(navAbout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(navLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3440,7 +3443,8 @@ public class DashboardAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(menuContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(menuContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         topNav.setBackground(new java.awt.Color(0, 205, 255));
@@ -3515,14 +3519,14 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
         getAccessibleContext().setAccessibleName("dashboard");
 
-        setSize(new java.awt.Dimension(1389, 818));
+        setSize(new java.awt.Dimension(1389, 812));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void getPresentStaffs(){
+    private void getDashboardDetails(){
         try{
                 SimpleDateFormat ft= new SimpleDateFormat("dd-MM-yyyy");
-                String today = ft.format(new java.util.Date());
+                String today =ft.format(new Date());
                 DefaultTableModel tableModel = (DefaultTableModel) presentStaffTable.getModel();
                 Connection con = databaseConnection();
                 String query = "select name,staffs.email,contact,joining from attendance join staffs on staffs.email = attendance.email where date='"+today+"';";
@@ -3537,10 +3541,38 @@ public class DashboardAdmin extends javax.swing.JFrame {
                    tableModel.addRow(new Object[]{rs.getString("name"),rs.getString("email"),rs.getString("contact"),rs.getString("joining")});
                 }
                 lblPresentStaff.setText(Integer.toString(countPresent));
+                
+                query = "select * from events;";
+                rs = stmt.executeQuery(query);
+                int completed=0,pending=0,running=0;
+                
+                while(rs.next()){
+                   String status=rs.getString("status");
+                   if(status.equals("completed"))
+                       completed++;
+                   else if(status.equals("pending")){
+                        String start=rs.getString("start");
+                        if(start.equals(today)){
+                            
+                            running++;
+                            int event_id=(int)rs.getInt("id");
+                            query="update events set status='running' where ID="+event_id+";";
+                            Statement newStmt = con.createStatement();
+                            newStmt.executeUpdate(query);
+                        }else{
+                            pending++;
+                        }
+                   }
+                   else
+                       running++;
+                }                
                 con.close();
+                lblEventDone.setText(Integer.toString(completed));
+                lblEventPending.setText(Integer.toString(pending));
+                lblEventRunning.setText(Integer.toString(running));
             }catch(Exception e){
                 JOptionPane.showMessageDialog(contentContainer, e);
-                //con.close();
+                e.printStackTrace();
             }
     }
     
@@ -3684,6 +3716,19 @@ public class DashboardAdmin extends javax.swing.JFrame {
                    count++;
                 }
                 staff_count.setText(Integer.toString(count));
+                
+                String status = (String)eventListTable.getValueAt(eventListTable.getSelectedRow(), 4);
+                if(status.equals("running")){
+                    SimpleDateFormat ft= new SimpleDateFormat("dd-MM-yyyy");
+                    String today = ft.format(new java.util.Date());
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery("select email from attendance where date='"+today+"';");
+                    staff_selection.removeAllItems();
+                    while(rs.next()){
+                        staff_selection.addItem(rs.getString("email"));
+                    }
+                }else{staff_selection.removeAllItems();}
+                          
                 con.close();
             }catch(Exception e){
                 JOptionPane.showMessageDialog(contentContainer, e);
@@ -3779,6 +3824,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void navDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navDashboardMouseClicked
        panelChange(dashboardContainer,navDashboard);
+       getDashboardDetails();
     }//GEN-LAST:event_navDashboardMouseClicked
 
     private void navServicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_navServicesMouseClicked
@@ -4561,6 +4607,29 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void assign_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assign_staffMouseClicked
         // TODO add your handling code here:
+        if(staffAssignmentTable.getSelectedRow()<0&&eventListTable.getSelectedRow()>=0){
+            if(staff_selection.getSelectedIndex()>=0){
+                try{
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Assign staff.");
+                    if(choice==0){
+                        int event_id=(int)eventListTable.getValueAt(eventListTable.getSelectedRow(), 0);
+                        Connection con = databaseConnection();
+                        String query="INSERT INTO `staff_assignment` (`event_id`, `staff_id`) VALUES ("+event_id+",'"+staff_selection.getSelectedItem()+"');";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Staff Assigned Successfully.");  
+                        getAssignedStaffs(event_id);
+                        con.close();
+                    }   
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Please select a staff id to assign.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Please unselect staff from staff table and select an event from event table.");
+        }
     }//GEN-LAST:event_assign_staffMouseClicked
 
     private void assign_staffMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_assign_staffMouseEntered
@@ -4572,7 +4641,31 @@ public class DashboardAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_assign_staffMouseExited
 
     private void remove_staffMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_staffMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
+        if(staffAssignmentTable.getSelectedRow()>=0){
+            String status = (String)eventListTable.getValueAt(eventListTable.getSelectedRow(), 4);
+            if(status.equals("running")){
+                try{
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to remove Assigned staff.");
+                    if(choice==0){
+                        int event_id=(int)eventListTable.getValueAt(eventListTable.getSelectedRow(), 0);
+                        Connection con = databaseConnection();
+                        String query="DELETE FROM staff_assignment WHERE event_id="+event_id+" and staff_id='"+staffAssignmentTable.getValueAt(staffAssignmentTable.getSelectedRow(), 0)+"';";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Staff removed Successfully.");  
+                        getAssignedStaffs(event_id);
+                        con.close();
+                    }   
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Selected event is not in running state.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Please select staff from staff table to remove assignment.");
+        }
     }//GEN-LAST:event_remove_staffMouseClicked
 
     private void remove_staffMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_remove_staffMouseEntered
@@ -4585,6 +4678,7 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void unselectStaffAssignmentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unselectStaffAssignmentTableMouseClicked
         // TODO add your handling code here:
+        staffAssignmentTable.clearSelection();
     }//GEN-LAST:event_unselectStaffAssignmentTableMouseClicked
 
     private void btnEventTerminateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventTerminateMouseClicked
@@ -4601,6 +4695,30 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void btnEventCompleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventCompleteMouseClicked
         // TODO add your handling code here:
+        if(eventListTable.getSelectedRow()>=0){
+            String status = (String)eventListTable.getValueAt(eventListTable.getSelectedRow(), 4);
+            if(status.equals("running")){
+                try{
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to mark event as Completed.");
+                    if(choice==0){
+                        int event_id=(int)eventListTable.getValueAt(eventListTable.getSelectedRow(), 0);
+                        Connection con = databaseConnection();
+                        String query="update  events set status='completed' where ID="+event_id+";";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Event completed Successfully.");  
+                        getEventDetails("");
+                        con.close();
+                    }      
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(this,"Selected event is not in running state.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Please select an event from Table.");
+        }
     }//GEN-LAST:event_btnEventCompleteMouseClicked
 
     private void btnEventCompleteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventCompleteMouseEntered
@@ -4613,6 +4731,33 @@ public class DashboardAdmin extends javax.swing.JFrame {
 
     private void btnEventUpdateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventUpdateMouseClicked
         // TODO add your handling code here:
+        String venue=eventVenueTxt.getText();
+        String start=eventStartTxt.getText();
+        String end = eventEndTxt.getText();
+        if(venue.equals("")&&start.equals("")&&end.equals("")){
+            JOptionPane.showMessageDialog(this,"Please enter all the required field to update.");
+        }else{
+            String status=(String)eventListTable.getValueAt(eventListTable.getSelectedRow(), 4);
+            if(status.equals("pending")){
+                try{
+                    int choice = JOptionPane.showConfirmDialog(contentContainer, "Are you sure to Update event.");
+                    if(choice==0){
+                        int event_id=(int)eventListTable.getValueAt(eventListTable.getSelectedRow(), 0);
+                        Connection con = databaseConnection();
+                        String query="update  events set venue='"+venue+"',start='"+start+"',end='"+end+"' where ID="+event_id+";";
+                        Statement stmt=con.createStatement();
+                        stmt.executeUpdate(query);
+                        JOptionPane.showMessageDialog(contentContainer, "Event updated Successfully.");  
+                        getEventDetails("");
+                        con.close();
+                    }   
+                }catch(Exception e){
+                    JOptionPane.showMessageDialog(contentContainer,e);
+                }
+            }else{
+                JOptionPane.showMessageDialog(contentContainer,"Only pending events will be updated.");
+            }
+        }
     }//GEN-LAST:event_btnEventUpdateMouseClicked
 
     private void btnEventUpdateMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventUpdateMouseEntered
@@ -4805,12 +4950,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
@@ -4907,6 +5049,9 @@ public class DashboardAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblDashborad1;
     private javax.swing.JLabel lblEvent;
     private javax.swing.JLabel lblEvent1;
+    private javax.swing.JLabel lblEventDone;
+    private javax.swing.JLabel lblEventPending;
+    private javax.swing.JLabel lblEventRunning;
     private javax.swing.JLabel lblInUse;
     private javax.swing.JLabel lblPresentStaff;
     private javax.swing.JLabel lblService;
